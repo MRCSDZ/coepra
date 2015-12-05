@@ -1,0 +1,183 @@
+TABLAS BASE DE DATOS COEPRA
+
+Usuario:
+	idusuario
+	idrol_fk
+	idtelefono_fk
+	nombreusuario
+	apellidom
+	apellidop
+	usuario
+	
+
+Roles:
+	idrol
+	rol
+
+TelefonosUsuarios:
+	idtelefonousuarios
+	idUsuario_fk
+	numerotelefono
+
+FichaIdentificacion:
+	idfichaidentificacion
+	idusuario_fk
+	Empresainstitucion
+	anosexperiencia
+	svpr
+	fechaadiestramiento
+	cursorealizdo
+	gradoescolar
+	numerocursosimpartidos
+
+cursos:
+	idcurso
+	idfichaidentificacion_fk
+	idlugarcurso_fk
+	fechaimparticioncurso
+	horariocurso
+	nombreempresadirigida
+	giroasociacion
+	estadocurso
+
+lugarcurso:
+	idlugarcurso
+	idcurso_fk
+	nombrelugar
+	calle
+	colonia
+	numero
+	anexo
+	ciudad
+
+
+
+instructoresauxiliares:
+	idinstructorauxiliar
+	idcurso_fk
+	nombre
+	apellidop
+	apellidom
+	telefono
+	direccion
+	correo
+
+
+
+Evidencias:
+	idevidencias
+	idcurso_fk
+	Enlace
+
+Alumnos:
+	idalumno
+	idcurso_fk
+	nombre
+	apelidom
+	apellidop
+	Lugartrabajo
+	fechanacimiento
+	sexo
+	edad
+	estadocivil
+	escolaridad
+	nacimiento
+	domicilio
+	telefono
+	correo
+
+tumb:
+	idtumb
+	jurisdiccion
+	nombre
+	apellidom
+	apellidop
+	sexo
+	fechanacimiento
+	escolaridad
+	nivel
+	direccion
+	municipio
+	correoelectronico
+	fechacurso
+	experiencia
+
+capacitacionestumb
+	idcapacitaciones
+	idtumb
+	rcpparaprofesionales
+	acls
+	prntraumanaetm
+	phtls
+	pepp
+	pals
+	nals
+	empact
+	amls
+	fsc
+	otros
+
+telefonostumb:
+	idtelefono
+	idtumb_fk
+	numerotelefono
+
+registroambulacia:
+	idregistroambulancia
+	iddireccionambulancia_fk
+	idtelefonoambulancia_fk
+	idcorreoambulancia_fk
+	idresponsbalesanitario_fk
+	instituciondependencia
+	tipoambulancia
+	numeroverificacionsanitaria
+	numeroeconomico
+	marcaambulancia
+	modelo
+	
+direccionambulancia:
+	iddireccionambulancia
+	calle
+	colonia
+	numero
+	anexo
+	codigopostal
+	ciudad
+
+telefonoambulancia:
+	idtelefonoambulancia
+	idregistroambulancia_fk
+	numerotelefono
+
+correoambulancia:
+	idcorreoambulancia
+	idregistroambulancia_fk
+	direccioncorreo
+	
+responsablesanitario:
+	idresponsablesanitario
+	nombre
+	apellidop
+	apellidom
+	telefono
+	correoelectronico
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
