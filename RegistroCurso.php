@@ -3,7 +3,60 @@
 session_start();
 require("admin/instancia.txt");
 /******************  NO BORRAR  ******************/
+    include_once 'clases/database.php';
+    include_once 'initial.php';
+    
+    
+   
+   //Mensaje de Alerta
+    $Mensaje = " ";
 
+    //Comprobar Si existen datos en POST
+    if ($_POST)
+    {
+    
+        // Instancia de usuario
+        include_once 'clases/cursos.php';
+        $curso = new Curso($db);
+
+        // Valores en Usuario
+        $curso->idfichaidentificacion  = $_SESSION['fichainstructor'];
+        $curso->nombrecurso            = htmlentities(trim($_POST['nombrecurso']));
+        $curso->fechacurso             = htmlentities(trim($_POST['fechacurso']));
+        $curso->horariocurso           = htmlentities(trim($_POST['horariocurso']));
+        $curso->empresadirigida        = htmlentities(trim($_POST['empresadirigida']));
+        $curso->giroasociacion         = htmlentities(trim($_POST['giroasociacion']));
+        $curso->estadocurso            = htmlentities(trim($_POST['estadocurso']));
+
+
+        // Mensaje si el usuario se creo
+        if($curso->create()){
+            $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
+                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
+                            El usuario fue creado exitosamente
+                        </div>";
+            unset($_POST['nombrecurso']);
+            unset($_POST['fechacurso']);
+            unset($_POST['horariocurso']);
+            unset($_POST['empresadirigida']);
+            unset($_POST['giroasociacion']);
+            unset($_POST['estadocurso']);
+
+            header( "refresh:1; url=Cursos.php" );
+            
+
+        }
+
+        // Mensaje si el usuario no se pudo crear
+        else{
+            $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                            &times
+                      </button>
+                El usuario no se creo
+            </div>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,71 +113,59 @@ require("admin/instancia.txt");
                         <h1 class="page-header">Registro de Curso</h1>
                     </div>
 
-                    <div class="col-lg-6">
-                        <form action="MiCurso.php">
-                            <b>Nombre del curso:</b>
-                            <input type="text" class="form-control">
-                            <br>
+                    <div class="col-lg-12">
+                            <?php echo $Mensaje;?> 
+                        </div>
 
-                            <b>Nombre del Instructor:</b>
-                            <input type="text" class="form-control">
+                    <form action="RegistroCurso.php" method="post">    
+                        
+                        <div class="col-lg-8">
+                            <b>Nombre del curso</b>
+                            <input type="text" name="nombrecurso" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             <br>
+                        </div>
+                    
 
-                            <b>Lugar Donde se Realizara el Curso:</b>
-                            <input type="text" class="form-control">
+                        <div class="col-lg-4">
+                            <b>Nombre del Instructor</b>
+                            <input type="text" class="form-control" value="<?php echo $_SESSION['nombre_global']; ?>" disabled>
                             <br>
-                            <b>Direccion</b> <br>
-                            Calle:
-                            <input type="text" class="form-control">
-                            <br>
+                        </div>
 
-                            Colonia:
-                            <input type="text" class="form-control">
+                        <div class="col-lg-6">
+                            <b>Fecha de Imparticion del Curso</b>
+                            <input type="date" name="fechacurso" class="form-control" required>
                             <br>
+                        </div>
 
-                            Calle:
-                            <input type="text" class="form-control">
+                        <div class="col-lg-6">
+                           
+                            <b>Horario de Imparticion del Curso</b>
+                            <input type="text" name="horariocurso" class="form-control"  onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             <br>
+                        </div>
 
-                            Numero o Interior:
-                            <input type="text" class="form-control">
+                        <div class="col-lg-12">
+                            Nombre de la Empresa/Dependencia/Asociacion que va dirigido el curso</b>
+                            <input type="text" name="empresadirigida" class="form-control"  onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                             <br>
+                        </div>
 
-                            Anexo
-                            <input type="text" class="form-control">
+                        <div class="col-lg-12">
+                            <b>Giro de la Empresa/Dependencia/Asociacion</b>
+                            <input type="text" name="giroasociacion" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"  required>
                             <br>
+                        </div>
 
-                            <b>Fecha de Adiestramiento como instructor:</b>
-                            <input type="text" class="form-control">
-                            <br>
+                        <div class="col-lg-12">
+                            <input type="hidden" name="estadocurso" value="ACTIVO" >
+                            <button type="submit" class="btn btn-success">Registrar Nuevo Curso</button>
+                            <a href="index.php" class="btn btn-primary">Regresar a inicio</a>
+                        </div>
 
-                            <b>Grado Escolar o academico actual:</b>
-                            <input type="text" class="form-control">
-                            <br>
-
-                            <b>Numero de cursos impartidos:</b>
-                            <input type="text" class="form-control">
-                            <br>
-
-                            <b>Telefono de contacto:</b>
-                            <input type="text" class="form-control">
-                            <br>
-
-                            <b>Segundo telefono de contacto:</b>
-                            <input type="text" class="form-control">
-                            <br>
-
-                            <b>Correo electronico:</b>
-                            <input type="email"class="form-control">
-                            <br>
-                            <br>
-
-
-                            <input type="submit" value="Registrar" class="form-control">
-                            <br>
-                            <br>
-                        </form>
-                    </div>
+                        
+                        
+                    </form>
                     
                 </div>
                 <!-- /.row -->

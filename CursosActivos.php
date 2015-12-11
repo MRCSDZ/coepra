@@ -3,7 +3,12 @@
 session_start();
 require("admin/instancia.txt");
 /******************  NO BORRAR  ******************/
+include_once 'clases/database.php';
+include_once 'initial.php';
+include_once 'clases/cursos.php';
 
+    //Instancia de cursos
+    $curso = new Curso($db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,69 +57,60 @@ require("admin/instancia.txt");
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row">
-
-                   
-
+                <div class="row">                                    
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cursos Activos</h1>
+                        <h1 class="page-header">Mis Cursos Activos</h1>
                     </div>
 
+
                     <div class="col-lg-12">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                            Cursos Activos
+                                Usuarios En el sistema
                             </div>
                             <!-- /.panel-heading -->
-
                             <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>Numero de curso</th>
                                                 <th>Nombre de Curso</th>
                                                 <th>Inicio de curso</th>
-                                                <th>Fin de Curso</th>
-                                                <th>Cantidad de Alumnos</th>
+                                                <th>Empresa dirigida</th>
                                                 <th>Panel Curso</th>
-
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>
-                                            <tr>
-                                                <td>003</td>
-                                                <td>Concientizacion del alcohol</td>
-                                                <td>2014/09/01</td>
-                                                <td>2015/11/01</td>
-                                                <td>21</td>
-                                                <td><a href="MiCurso.php">Ver Mas <p class="fa fa-arrow-right"></p></a></td>
+                                        <?php 
+                                            $prep_state = $curso->cursosactivosgeneral();
+                                            while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
+                                        ?>
+                                            <tr>                 
+                                                <td><?php echo $row['idcurso'];?></td>                                   
+                                                <td><?php echo $row['nombrecurso'];?></td>                                    
+                                                <td><?php echo $row['fechacurso'];?></td>
+                                                <td><?php echo $row['empresadirigida'];?></td> 
+                                                <td>
+                                                    <form action="MiCurso.php" method="POST">
+                                                        <input name="idcurso" type="hidden" value="<?php echo $row['idcurso'];?>">
+                                                        <button type="submit" class="btn btn-primary">Ver Curso</button>
+                                                    </form>
+                                                </td>                     
                                             </tr>
-                                            <tr>
-                                                <td>004</td>
-                                                <td>Primeros Auxilos</td>
-                                                <td>2014/02/12</td>
-                                                <td>2015/12/01</td>
-                                                <td>10</td>
-                                                <td><a href="MiCurso.php">Ver Mas <p class="fa fa-arrow-right"></p></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>005</td>
-                                                <td>Tecnico en Urgencias Medicas Nivel II</td>
-                                                <td>2014/09/01</td>
-                                                <td>2015/11/01</td>
-                                                <td>21</td>
-                                                <td><a href="MiCurso.php">Ver Mas <p class="fa fa-arrow-right"></p></a></td>
-                                            </tr>
-                                        </tbody>
+                                        <?php } ?>                                           
+                                        </tbody> 
                                     </table>
                                 </div>
-                                <!-- /.table-responsive -->
+                                <!-- /.table-responsive --> 
                             </div>
-                        <!-- /.panel-body -->
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel -->
+
                     </div>
+                       
+
 
 
                     

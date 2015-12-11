@@ -12,6 +12,9 @@ $q = "SELECT * FROM usuario
 $r=$mysqli->query($q);
 $row=$r->fetch_assoc();
 
+
+
+
 	if($row <= 0)
 	{
 		echo "INGRESO MAL LOS DATOS";

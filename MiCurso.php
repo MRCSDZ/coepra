@@ -3,6 +3,24 @@
 session_start();
 require("admin/instancia.txt");
 /******************  NO BORRAR  ******************/
+include_once 'clases/database.php';
+include_once 'initial.php';
+include_once 'clases/cursos.php';
+include_once 'clases/instructores.php';
+// Construir instancias
+
+$id = $_POST["idcurso"];
+$_SESSION["idcurso_global"] = $id;
+//Cursos
+$curso = new Curso($db);
+$curso->idcurso = $id;
+$curso->cantidaddiastranscurridos();
+$curso->getcurso();
+
+//Instructores
+$instructor = new Instructores($db);
+$instructor->idcurso = $id;
+
 
 ?>
 <!DOCTYPE html>
@@ -57,20 +75,32 @@ require("admin/instancia.txt");
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Curso Primeros Auxilios Nivel II</h1>
+                        <h1 class="page-header"><?php echo $curso->nombrecurso;?></h1>
+                    </div>
+
+                    <div class="col-lg-12">
+                       <div class="btn-group btn-group-justified">
+                            <a href="CursosActivos.php" class="btn btn-primary">Regresar a Cursos</a>
+                            <a href="#" class="btn btn-info">Generar Reporte General de Curso</a>
+                            <a href="#" class="btn btn-warning">Terminar Curso</a>
+                          <a href="#" class="btn btn-danger">Eliminar Curso</a>
+                        </div>
+                        <br>
                     </div>
 
                     
+
+                    
                     <div class="col-lg-6 col-md-6">
-                        <div class="panel panel-warning">
+                        <div class="panel panel-success">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <i class="fa fa-calendar fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">15</div>
-                                        <div>Dias Restantes de curso</div>
+                                        <div class="huge"><?php echo $curso->diastranscurridos;?></div>
+                                        <div>Dias Transcurridos</div>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +116,7 @@ require("admin/instancia.txt");
 
 
                     <div class="col-lg-6 col-md-6">
-                        <div class="panel panel-warning">
+                        <div class="panel panel-success">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -117,17 +147,37 @@ require("admin/instancia.txt");
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <p class="fa fa-eye"></p> Ver ficha Identificacion en Primera Respuesta <br>
-                                <b>Nombre del Curso:</b> Primeros Auxilios Nivel II <br>
-                                <b>Instructor Principal:</b> <a href="PerfilUsuario.php">Marcos Diaz Martinez</a>  <br>
-                                <b>Inicio Curso:</b> 2015/10/10 <b>Terminacion Curso:</b> 2015/11/10  <br>
-                                <b>Horario:</b> L-V 7:00- 1:00 <br>
-                                <b>Lugar del Curso:</b> Centro de Convenciones <br>
-                                <b>Direccion:</b> Alamos #123 Col Tomate<br>
-                                <b>Dependencia del Curso:</b> Cruz Roja <br>
-                                <b>Curso Dirigido a: </b>Cualquier Persona   <b>Giro:</b> Salud <br><br>
+                                
+                                <div class="well well-sm">
+                                    <a href="VerFichaIdentificacion.php" target="_blank"><p class="fa fa-eye"></p> Ver Ficha Identificacion en Primera Respuesta</a> 
+                                </div>
+                                <div class="well well-sm">
+                                    
+                                    <center><h4>Datos Generales</h4></center>
+                                    <b>Nombre del Curso:</b> <?php echo $curso->nombrecurso;?> <br>
+                                    <b>Instructor Principal:</b> <a href="MiPerfil.php" target="_blank"> <?php echo $_SESSION["nombre_global"] ?> </a>  <br>
+                                    <b>Inicio Curso:</b> <?php echo $curso->fechacurso;?><br>
+                                    <b>Horario:</b> <?php echo $curso->horariocurso;?> <br> 
+                                    <b>Dependencia del curso:</b> <?php echo $curso->empresainstitucion;?> <br> 
+                                    <b>Curso Dirigido a: </b><?php echo $curso->empresadirigida;?><br>   
+                                    <b>Giro:</b> <?php echo $curso->giroasociacion;?> <br><br>
+                                     
+                                        
+                                        <a href="EditarMiCurso.php" class="btn btn-link"> <p class="fa fa-gears"></p>Editar Datos Generales Curso</a>
+                                    
+                                </div>
 
-                                <p class="fa fa-gears"></p> Modificar Datos    
+                                <div class="well well-sm">    
+                                    <center><h4>Ubicacion Curso</h4></center>
+                                    
+
+                                    <br>
+                                    <br>
+                                    <a href="DireccionCurso.php"><i class="fa fa-plus-circle"></i> Agregar/Modificar Direccion </a>
+
+                                </div>
+                                
+                                   
                             
                             </div>
                         <!-- /.panel-body -->
@@ -149,28 +199,38 @@ require("admin/instancia.txt");
                                             <tr>
                                                 <th>Nombre Instructor Auxiliar</th>
                                                 <th>Telefono</th>
+                                                <th>Ver Mas</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Jose Perez Leon</td>
-                                                <td>664 764 50 98</td>
-                                                
+                                        <?php 
+                                            $prep_state = $instructor->getAllInstructoresCurso();
+                                            while ($row = $prep_state->fetch(PDO::FETCH_ASSOC))
+                                            {
+                                        ?>
+                                            <tr>                 
+                                                <td><?php echo $row['nombre']." ".$row['apaterno']." ".$row['amaterno'];?></td>                                   
+                                                <td><?php echo $row['telefono'];?></td>                                    
+                                                <td><form action="VerInstructor.php" method="POST">
+                                                        <center>
+                                                            <input type="hidden" name="idinstructor" value="<?php echo $row['idinstructorauxiliar'];  ?>">
+                                                            <button class="btn btn-default btn-circle" ><i class="fa fa-arrow-circle-right"></i></button>
+                                                        </center>
+                                                    </form>
+                                                </td>
+                                                              
                                             </tr>
-                                            <tr>
-                                                <td>Enrique Segoviano Lopez</td>
-                                                <td>664 300 22 11</td>
-                                               
-                                            </tr>
-                                        </tbody>
+                                        <?php } ?>                                           
+                                        </tbody> 
                                     </table>
                                     <br>
                                     <br>
-                                    <br>
-                                    <br>
-                                    <br><p class="fa fa-plus-circle"></p> Agregar Instructor Auxiliar
+
+                                    <a href="AgregarInstructor.php"><i class="fa fa-plus-circle"></i> Agregar Instructor Auxiliar </a>
+                                   
+                                       
                                     
-                                    
+                                        
 
                                 </div>
                             <!-- /.table-responsive -->
@@ -178,6 +238,10 @@ require("admin/instancia.txt");
                         <!-- /.panel-body -->
                         </div>
                     <!-- /.panel -->
+                    </div>
+
+                    <div class="col-lg-12">
+                        
                     </div>
 
 

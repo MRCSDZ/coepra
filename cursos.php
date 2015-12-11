@@ -1,6 +1,20 @@
 <?php 
 session_start();
 require("admin/instancia.txt");
+//id del usuario
+$id = $_SESSION['idusuario_global'];
+//Clases requeridas
+include_once 'clases/database.php';
+include_once 'initial.php';
+include_once 'clases/cursos.php';
+
+//Construir objeto
+$curso = new Curso($db);
+$curso->idusuario = $id;
+
+//Metodos cantidad de cursos en panel
+$curso->cantidadcursosactivos();
+$curso->cantidadcursosinactivos();
 
 
 ?>
@@ -67,7 +81,7 @@ require("admin/instancia.txt");
                                         <i class="fa fa-bookmark fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">3</div>
+                                        <div class="huge"> <?php echo $curso->cantidadactivos;?> </div>
                                         <div>Cursos Activos</br></div>
                                     </div>
                                 </div>
@@ -93,7 +107,7 @@ require("admin/instancia.txt");
                                         <i class="fa fa-bookmark fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">2</div>
+                                        <div class="huge"><?php echo $curso->cantidadinactivos;?></div>
                                         <div>Cursos Terminados </div>
                                     </div>
                                 </div>

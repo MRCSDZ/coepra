@@ -3,20 +3,29 @@
 session_start();
 require("admin/instancia.txt");
 /******************  NO BORRAR  ******************/
-$id = $_SESSION['idusuario_global'];
-// Clases de base de datos y usuarios
 include_once 'clases/database.php';
-include_once 'clases/fichaidentificacion.php';
+
 include_once 'initial.php';
-
-// Construir instancias
+include_once 'clases/fichaidentificacion.php';
 $fichaidentificacion = new Fichaidentificacion($db);
-$fichaidentificacion->id = $id;
-$fichaidentificacion->exist();
+$id = $_SESSION['idusuario_global'];
+$Mensaje = " ";
 
-$con = " ";
-$sin = " ";
-$idficha = " ";
+// check if the submit button yes was clicked
+if (isset($_POST['del-btn']))
+{
+    $fichaidentificacion->idusuario = $id;
+    $fichaidentificacion->delete();
+    header("Location: EliminarFichaIdentificacion.php?deleted");
+}
+      // check if the user was deleted
+      if(isset($_GET['deleted'])){
+         $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
+                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
+                            El usuario fue eliminado exitosamente
+                        </div>";
+      }
+
 
 ?>
 <!DOCTYPE html>
@@ -69,62 +78,42 @@ $idficha = " ";
                 <div class="row">
 
                    
-                   
+
                     <div class="col-lg-12">
-                        <h1 class="page-header">Plataforma Centro Regulador de Urgencias Medicas</h1>
+                        <h1 class="page-header">Plataforma Centro Regulador de Urgencias Medicas  </h1>
                     </div>
 
                     <div class="col-lg-12">
+                            <?php echo $Mensaje;?> 
+                    </div>
+
+                    <div class="col-lg-12">
+                        <?php
+                            if (isset($_POST['idu'])) 
+                            {
+                        ?>
+                            <form method='post'>
+                                <input type='hidden' name='id' value='id' />
+                                <div class='alert alert-warning'>Estas seguro que quieres eliminar al Usuario?"</div>
+                                <button type='submit' class='btn btn-danger' name='del-btn'>Si</button>
+                                <a href='index.php' class='btn btn-default' role='button'>No</a>
+               
+                            </form>
                         <?php 
-
-                            $estatus= $fichaidentificacion->comprobacion;
-
-                            if ($estatus > 0) 
-                            {
-                                //echo "si tiene su ficha";
-                                $sin = "hidden";
-                                $con = " ";
-                                $_SESSION['fichainstructor'] = $fichaidentificacion->idf;
                             }
 
-                            else
-                            {
-                                //echo "no tiene ficha noob";
-                                $sin = "";
-                                $con = "hidden";
-                                $idficha = " ";
+                            else 
+                            {   
+                        ?>
+                        <?php  ?>    
+                            <a href='Home.php' class='btn btn-large btn-primary'>Regresar Inicio </a>
 
+
+                        <?php
                             }
-
-                        ?>   
-                        <fieldset <?php echo $sin; ?> >
-                            <center><h3>Instructor No puedes impartir un curso si no tienes una ficha de identificacion </h3></center>
-                            <center><a href="CrearFichaIdentificacion.php" class="btn btn-primary">Crear Ficha de Identificacion</a></center>
-                        </fieldset>
-
-                        <fieldset <?php echo $con; ?> >
-                            <center><h3> Usted ya cuenta con su ficha de identifiacion presione continuar para crear el curso o en editar para modificarla</h3></center>
-                            <center>
-                                
-                                <input type="hidden" value="<?php echo $idficha ?>" name="idficha">
-                                <a href="EditarFichaIdentificacion.php" class="btn btn-primary">Modificar Ficha de Identificacion</a>    
-                                <a href="RegistroCurso.php" class="btn btn-success">Registrar Nuevo Curso</a>
-                            
-                            </center>
-                        </fieldset>
-
-
-
-                    
-                        
+                        ?>
                         
                     </div>
-
-
-
-                    
-
-                    
                 </div>
                 <!-- /.row -->
             </div>
