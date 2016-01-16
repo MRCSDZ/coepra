@@ -1,8 +1,9 @@
 <?php
 
  require('Conexiones/BD.php');
+ session_start();
 
-$matricula = $_POST["rpe"];
+$matricula = $_POST["mat"];
 $pwd = $_POST["pwd"];
 
 $q = "SELECT * FROM usuario
@@ -18,33 +19,20 @@ $row=$r->fetch_assoc();
 	if($row <= 0)
 	{
 		echo "INGRESO MAL LOS DATOS";
-		?>
-		
-		<script type="text/javascript">
-			window.location="aviso.php";
-		</script>
-
-		<?php
+		header("Location: Aviso.php");
 
 	}
 
 	else
 	{
-		session_start();
-		$_SESSION['rpe_global'] = $row["matricula"];
+		
+		$_SESSION['matricula_global'] = $row["matricula"];
 		$_SESSION['nombre_global'] = $row["nombre"]." ".$row["apaterno"]." ".$row["amaterno"];
-		$_SESSION['nivel_global'] = $row["rol"];
+		$_SESSION['rol_global'] = $row["rol"];
 		$_SESSION['idusuario_global'] = $row["idusuario"];
 
+	   header("Location: direcciones.php");
 
-		?>
-
-		<script type="text/javascript">
-			window.location="home.php";
-		</script>
-
-
-		<?php
 
 	}
 

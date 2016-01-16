@@ -1,7 +1,7 @@
 <?php
 
 
-if (isset($_SESSION["rpe_global"]))
+if (isset($_SESSION["matricula_global"]))
 {
 
    
@@ -11,7 +11,7 @@ if (isset($_SESSION["rpe_global"]))
 else 
 {
 
-  header("location: index.php");
+  header("location: ../index.php");
 
 }
 

@@ -44,7 +44,7 @@
 	        if ($prep_state->execute()) 
 	        	{
 	            	return true;
-	            	$this->ultimoparametro = PDO::lastInsertId() ;
+	            	
 
 
 	        	} 
@@ -55,6 +55,59 @@
             
 
     	}
+
+    	function RelacionarCurso()
+    	{
+	        $sql = "UPDATE curso 
+	        		   SET lugarcurso_idlugarcurso = :idlugarcurso            
+	                 WHERE idcurso = :idcurso";
+	        // prepare query
+	        $prep_state = $this->db_conn->prepare($sql);
+
+
+	        $prep_state->bindParam(':idlugarcurso', $this->idlugarcurso);
+	        $prep_state->bindParam(':idcurso', $this->idcurso);
+	        
+
+	        // execute the query
+	        if ($prep_state->execute()) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+    	}
+
+    	function VerLugar()
+    	{
+    		$sql="SELECT nombrelugar,
+    					 calle,
+    					 numero,
+    					 colonia,
+    					 anexo,
+    					 ciudad 
+    			    FROM lugarcurso
+			  INNER JOIN curso
+					  ON lugarcurso.idlugarcurso = curso.lugarcurso_idlugarcurso
+				   WHERE curso.idcurso = :idcurso";
+
+			$prep_state = $this->db_conn->prepare($sql);
+	        $prep_state->bindParam(':idcurso', $this->idcurso);
+	        $prep_state->execute();
+
+	        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+	        $this->nombrelugar = $row['nombrelugar'];
+	        $this->calle = $row['calle'];
+	        $this->numero = $row['numero'];
+	        $this->colonia = $row['colonia'];
+	        $this->anexo = $row['anexo'];
+	        $this->ciudad = $row['ciudad'];
+
+    	}
+
+    	
+
+
 
 	}
 

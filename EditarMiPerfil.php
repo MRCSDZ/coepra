@@ -112,7 +112,7 @@ if($_POST)
                         </div>
 
                     <div class="col-lg-12">
-                        <form action='EditarUsuario.php?id=<?php echo $id; ?>' method='POST'>
+                        <form action='EditarMiPerfil.php' method='POST'>
                             Nombre:
                             <input type='text' name='nombre' value='<?php echo $usuario->nombre;?>' class='form-control' placeholder="Ingresa el nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
                             Apellido Paterno:
@@ -123,7 +123,7 @@ if($_POST)
                             <input type='text' name='matricula' value='<?php echo $usuario->matricula;?>' class='form-control' placeholder="Matricula" required><br>
                             Rol:
                             
-                                <select name="rol" id="" class="form-control">
+                                <select name="rol" id="" class="form-control" disabled>
                                     <option value="<?php echo $usuario->rol;?>" selected><?php echo $usuario->rol;?></option>
                                     <option value="ADMINISTRADOR">Administrador</option>
                                     <option value="CAPTURISTA">Capturista</option>
@@ -137,7 +137,7 @@ if($_POST)
 
                             <input type='hidden' name='id' value='<?php echo $id;?>' class='form-control' placeholder="Correo electronico" required><br>
                             <button type="submit" class="btn btn-success" > Actualizar Usuario</button>
-                            <a href="ConsultarUsuarios.php" class="btn btn-primary"> Regresar a Usuarios</a>
+                            <a href="index.php" class="btn btn-primary"> Regresar a Inicio</a>
                             <br>    
                             <br>
 

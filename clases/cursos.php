@@ -23,6 +23,7 @@
     public $cantidadactivos;
     public $cantidadinactivos;
     public $diastranscurridos;
+    public $cantidadcursos;
 		
 
 		function __construct($db)
@@ -33,13 +34,12 @@
 
     function cantidadcursosactivos()
     {
-      $sql="    SELECT COUNT(idcurso) AS cantidadactivos
-                  FROM curso 
-            INNER JOIN fichaidentificacion 
-                    ON curso.fechaidentificacion_idfechaidentificacion = fichaidentificacion.idfichaidentificacion 
-            INNER JOIN usuario 
-                    ON usuario.idusuario = :idusuario 
-                   AND curso.estadocurso = 'ACTIVO'"; 
+      $sql="SELECT COUNT(curso.idcurso) AS cantidadactivos
+              FROM curso
+        INNER JOIN fichaidentificacion
+                ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+             WHERE fichaidentificacion.usuario_idusuario = :idusuario
+               AND curso.estadocurso = 'ACTIVO'"; 
 
       $prep_state = $this->db_conn->prepare($sql);
       $prep_state->bindParam(':idusuario', $this->idusuario);
@@ -52,14 +52,81 @@
 
     }
 
-    function cantidadcursosinactivos()
+    function cantidadcursos()
     {
-      $sql="    SELECT COUNT(idcurso) AS cantidadinactivos
+      $sql="SELECT COUNT(curso.idcurso) AS cantidadcursos
+              FROM curso
+        INNER JOIN fichaidentificacion
+                ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+             WHERE fichaidentificacion.usuario_idusuario = :idusuario"; 
+
+      $prep_state = $this->db_conn->prepare($sql);
+      $prep_state->bindParam(':idusuario', $this->idusuario);
+      $prep_state->execute();
+
+      $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+      $this->cantidadcursos = $row['cantidadcursos'];
+            
+
+    }
+
+
+
+    
+    function MostrarMisCursosActivos()
+    {
+      $sql="    SELECT idcurso, 
+                       nombrecurso, 
+                       fechacurso, 
+                       empresadirigida
                   FROM curso 
             INNER JOIN fichaidentificacion 
-                    ON curso.fechaidentificacion_idfechaidentificacion = fichaidentificacion.idfichaidentificacion 
-            INNER JOIN usuario 
-                    ON usuario.idusuario = :idusuario 
+                    ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+         WHERE fichaidentificacion.usuario_idusuario = :idusuario
+           AND curso.estadocurso = 'ACTIVO'"; 
+
+      $prep_state = $this->db_conn->prepare($sql);
+      $prep_state->bindParam(':idusuario', $this->idusuario);
+      $prep_state->execute();
+
+      return $prep_state;
+      $db_conn = NULL;
+            
+
+    }
+
+
+
+    function MostrarMisCursosInactivos()
+    {
+      $sql="    SELECT idcurso, 
+                       nombrecurso, 
+                       fechacurso, 
+                       empresadirigida
+                  FROM curso 
+            INNER JOIN fichaidentificacion 
+                    ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+         WHERE fichaidentificacion.usuario_idusuario = :idusuario
+           AND curso.estadocurso = 'INACTIVO'"; 
+
+      $prep_state = $this->db_conn->prepare($sql);
+      $prep_state->bindParam(':idusuario', $this->idusuario);
+      $prep_state->execute();
+
+      return $prep_state;
+      $db_conn = NULL;
+            
+
+    }
+
+    function cantidadcursosinactivos()
+    {
+      $sql="SELECT COUNT(curso.idcurso) AS cantidadinactivos
+              FROM curso
+        INNER JOIN fichaidentificacion
+                ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+             WHERE fichaidentificacion.usuario_idusuario = :idusuario
                    AND curso.estadocurso = 'INACTIVO'"; 
 
       $prep_state = $this->db_conn->prepare($sql);
@@ -98,6 +165,7 @@
         //Obtener id de la ficha
         $sql = "INSERT INTO " . $this->table_name . " SET fechaidentificacion_idfechaidentificacion = ?,
         												  nombrecurso     = ?, 
+                                                          lugarcurso_idlugarcurso = 0,
                                                           fechacurso   = ?, 
                                                           horariocurso   = ?, 
                                                           empresadirigida  = ?, 
@@ -125,7 +193,7 @@
 
     	}
 
-        //TODOS LOS CURSOS
+        //TODOS LOS CURSOS ACTIVOS
         function cursosactivosgeneral()
         {
             $sql = "SELECT idcurso, 
@@ -143,6 +211,10 @@
             $db_conn = NULL;
         }
 
+
+
+
+
         //Un curso en especifico
         function getcurso()
         {
@@ -152,7 +224,8 @@
                            curso.fechacurso, 
                            curso.horariocurso, 
                            curso.empresadirigida, 
-                           curso.giroasociacion, 
+                           curso.giroasociacion,
+                           curso.estadocurso, 
                            fichaidentificacion.empresainstitucion 
                       FROM curso 
                 INNER JOIN fichaidentificacion 
@@ -172,6 +245,7 @@
             $this->empresadirigida = $row['empresadirigida'];
             $this->giroasociacion = $row['giroasociacion'];
             $this->empresainstitucion = $row['empresainstitucion'];
+            $this->estadocurso = $row['estadocurso'];
 
             
         }
@@ -205,6 +279,65 @@
             {
                 return false;
             }
+                
+        }
+
+        function TerminarCurso()
+        {
+             $sql = "UPDATE curso 
+                        SET estadocurso     = 'INACTIVO' 
+                      WHERE idcurso       = :idcurso";
+            
+            $prep_state = $this->db_conn->prepare($sql);
+            $prep_state->bindParam(':idcurso', $this->idcurso);
+
+            // execute the query
+            if ($prep_state->execute()) 
+            {
+                return true;
+                
+            }   
+            else 
+            {
+                return false;
+            }
+                
+        }
+
+        function ActivarCurso()
+        {
+             $sql = "UPDATE curso 
+                        SET estadocurso     = 'ACTIVO' 
+                      WHERE idcurso       = :idcurso";
+            
+            $prep_state = $this->db_conn->prepare($sql);
+            $prep_state->bindParam(':idcurso', $this->idcurso);
+
+            // execute the query
+            if ($prep_state->execute()) 
+            {
+                return true;
+                
+            }   
+            else 
+            {
+                return false;
+            }
+                
+        }
+
+        function EliminarCurso()
+        {
+          $sql = "DELETE FROM  curso WHERE idcurso = :idcurso ";
+
+          $prep_state = $this->db_conn->prepare($sql); 
+          $prep_state->bindParam(':idcurso', $this->idcurso);
+
+          if ($prep_state->execute()) {
+              return true;
+          } else {
+              return false;
+          }
                 
         }
 

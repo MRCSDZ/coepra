@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-if (isset($_SESSION["rpe_global"]))
+if (isset($_SESSION["matricula_global"]))
 {
 
-    header("location: home.php");
+    header("location: direcciones.php");
 
 }
 
@@ -62,7 +62,7 @@ else {
                         <form action="redireccion.php" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control"  placeholder="Matricula" name="rpe" type="text" autofocus required>
+                                    <input class="form-control"  placeholder="Matricula" name="mat" type="text"   title="NO PUEDES INGRESAR CARACTERES ESPECIALES"autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contraseña" name="pwd" type="password" value="" required>

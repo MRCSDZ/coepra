@@ -95,6 +95,7 @@ $usuario->getUser();
 
                         <a href="EditarMiPerfil.php" class="btn btn-primary">Editar Mi Perfil</a>
                         <a href="DesactivarCuenta.php" class="btn btn-danger">Desactivar Mi Cuenta</a>
+                        <a href="index.php" class="btn btn-info">Regresar</a>
 
                         
                     </div>
