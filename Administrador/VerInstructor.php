@@ -79,18 +79,19 @@ $admin->idusuario = $id;
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Nombre del Instructor</h1>
+                        <h1 class="page-header">Ver Instructor</h1>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                Datos de Usuario
+                                Datos de Instructor
                             </div>
                             <div class="panel-body">
                                 <b>Nombre Completo:</b>  <?php echo $usuario->nombre;?> <?php echo $usuario->apaterno;?> <?php echo $usuario->amaterno;?> <br>
                                 <b>Matricula:</b>  <?php echo $usuario->matricula;?> <br>
                                 <b>Correo:</b>  <?php echo $usuario->correo;?> <br>
+                                <b>Telefono:</b>  <?php echo $usuario->telefono;?> <br>
 
                             </div>
                         

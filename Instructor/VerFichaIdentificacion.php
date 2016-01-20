@@ -203,7 +203,8 @@ $Mensaje = " ";
                         <div class="col-lg-12">
                             
                             <a href="EditarFichaIdentificacion.php" class="btn btn-success" >Editar Ficha de Identificacion</a>
-                            <a href="Cursos.php" class="btn btn-primary" >Regresar a Cursos</a>
+                            <a href="Cursos.php" class="btn btn-info" >Regresar a Cursos</a>
+                            <a href="../FichaIdentificacionPDF.php" target="_blank" class="btn btn-info"> <i class="fa fa-print" ></i>Imprimir Ficha de Identificacion</a>
                             
                         </div> 
 

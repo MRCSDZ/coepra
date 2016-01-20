@@ -70,7 +70,7 @@ require('../Conexiones/BD.php');
                     
                    
                     <div class="col-lg-12">
-                        <h1 class="page-header">Registro TAMP</h1>
+                        <h1 class="page-header">Modificar TAMP</h1>
                     </div>
 
                     <form action="AlteraDatosGeneralesTAMP.php" method="GET"> 

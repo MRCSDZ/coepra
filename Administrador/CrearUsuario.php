@@ -28,6 +28,7 @@
         $usuario->contrasena = htmlentities(trim($_POST['fcontrasena']));
         $usuario->rol       = htmlentities(trim($_POST['rol']));
         $usuario->correo     = htmlentities(trim($_POST['correo']));
+        $usuario->telefono    = htmlentities(trim($_POST['telefono']));
 
 
         // Mensaje si el usuario se creo
@@ -43,6 +44,7 @@
             unset($_POST['contrasena']);
             unset($_POST['rol']);
             unset($_POST['correo']);
+            unset($_POST['telefono']);
 
         }
 
@@ -136,7 +138,10 @@
                                 </select>
                                 <br>
                                 Correo
-                                <input type="email" name="correo" class="form-control" placeholder=" Ingrese Correo"  onkeyup="javascript:this.value=this.value.toUpperCase();"  required><br>
+                                <input type="email" name="correo" class="form-control" placeholder=" Ingrese Correo"  onkeyup="javascript:this.value=this.value.toUpperCase();"  required>
+                                <br>
+                                Telefono
+                                <input type="number" name="telefono" class="form-control" placeholder=" Ingrese Telefono con Lada Incluida"   required><br>
                                 
                                 <button type="submit" class="btn btn-primary" >Crear Nuevo Usuario</button>
                                 <a href="ConsultarUsuarios.php" class="btn btn-success" >Regresar a Usuarios</a>

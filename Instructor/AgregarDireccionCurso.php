@@ -126,7 +126,7 @@
                 <div class="container-fluid">
                     <div class="row"> 
                         <div class="col-lg-12">
-                            <h1 class="page-header">Agregar Instructor Auxiliar</h1>
+                            <h1 class="page-header">Agregar Direccion Curso</h1>
                         </div>
 
                         <div class="col-lg-12">

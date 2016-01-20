@@ -81,7 +81,7 @@ if (isset($_POST['del-btn']))
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Plataforma Centro Regulador de Urgencias Medicas</h1>
+                        <h1 class="page-header">Eliminar Usuario</h1>
                     </div>
 
                     <div class="col-lg-12">

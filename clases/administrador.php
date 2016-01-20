@@ -131,7 +131,8 @@ class Administrador
     		$sql = "SELECT  CONCAT(usuario.nombre, ' ', usuario.apaterno, ' ', usuario.amaterno) AS nombreinstructor, 
     						usuario.matricula,
     						usuario.correo,
-    						usuario.idusuario
+    						usuario.idusuario,
+    						usuario.telefono
 					 FROM 	usuario
                		WHERE rol = 'INSTRUCTOR'";
 

@@ -18,6 +18,7 @@ include_once '../clases/administrador.php';
 // Construir instancias
 
 $idcurso = $_GET["idcurso"];
+$_SESSION["idcurso_global"] = $idcurso;
 
 //Cursos
 $curso = new Curso($db);
@@ -131,9 +132,8 @@ else
                     <div class="col-lg-12">
                        <div class="btn-group btn-group-justified">
                             <a href="ConsultarCursos.php" class="btn btn-primary">Regresar a Cursos</a>
-                            <a href="#" class="btn btn-info">Generar Reporte General de Curso</a>
-                            <a href="<?php echo $urlestado; ?>" class="<?php echo $colorboton;?>"> <?php echo $mensajeboton; ?> </a>
-                            <a href="EliminarMiCurso.php?Eliminar" class="btn btn-danger">Eliminar Curso</a>
+                            <a href="../Instructor/ReporteCurso.php" class="btn btn-info">Generar Reporte General de Curso</a>
+                            
                         </div>
                         <br>
                     </div>

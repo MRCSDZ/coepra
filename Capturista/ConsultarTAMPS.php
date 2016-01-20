@@ -80,7 +80,7 @@ $query="SELECT
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar TUMS</h1>
+                        <h1 class="page-header">Consultar TAMPS</h1>
                     </div>
 
                     <div class="col-lg-12">

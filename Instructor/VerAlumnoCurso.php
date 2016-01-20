@@ -5,14 +5,15 @@ require("../admin/instancia.txt");
 require("../admin/permiso_nivel_5.php");
 /******************  NO BORRAR  ******************/
 // 
-if(isset($_SESSION["idcurso_global"]))
-{
-    $idcurso = $_SESSION["idcurso_global"];
-}
-else
+if(isset($_POST["idcurso"]))
 {
     $idcurso = $_POST["idcurso"];
 }
+else
+{
+    $idcurso = $_SESSION["idcurso_global"];
+}
+
 $idalumno = $_POST["idalumno"];
 setcookie("idalumno", $idalumno);
  
@@ -164,6 +165,13 @@ $alumno->ConsultarAlumno();
                         <button type="submit" class="btn btn-primary">Regresar al Curso</button>
                         
                     </form>
+
+                     <form action="../FichaAlumnoPDF.php" method="POST" style="display: inline;">
+                        <input type="hidden" name="idalumno" value="<?php echo $idalumno; ?>" >
+                        <button type="submit" class="btn btn-info"> <i class="fa fa-print"></i> Imprimir Ficha</button>
+                        
+                    </form>
+
 
                     
                     <a href="EliminarAlumno.php" class="btn btn-danger"> Eliminar Alumno</a>

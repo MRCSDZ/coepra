@@ -71,7 +71,7 @@ require("../admin/permiso_nivel_1.php");
                    
  
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Alumnos</h1>
+                        <h1 class="page-header">Consultar Evidencias</h1>
                     </div>
 
 

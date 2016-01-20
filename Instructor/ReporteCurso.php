@@ -6,29 +6,24 @@ require("../admin/permiso_nivel_5.php");
 /******************  NO BORRAR  ******************/
 include_once '../clases/database.php';
 include_once '../initial.php';
-include_once '../clases/cursos.php';
 include_once '../clases/instructores.php';
-include_once '../clases/lugarcurso.php';
 include_once '../clases/alumnos.php';
+include_once '../clases/reportes.php';
 include_once '../clases/evidencias.php';
+
 // Construir instancias
 
 
  $id = $_SESSION["idcurso_global"];
-//Cursos
-$curso = new Curso($db);
-$curso->idcurso = $id;
-$curso->cantidaddiastranscurridos();
-$curso->getcurso();
+//Reporte
+$reporte = new Reporte($db);
+$reporte->idcurso = $id;
+$reporte->GenerarReporte();
 
 //Instructores
 $instructor = new Instructores($db);
 $instructor->idcurso = $id;
 
- //LugarCurso
-$lugarcurso = new Lugarcurso($db);
-$lugarcurso->idcurso = $id;
-$lugarcurso->VerLugar();
 
 //Alumnos
 $alumno = new Alumnos($db);
@@ -39,182 +34,318 @@ $alumno-> CantidadAlumnosCurso($db);
 $evidencias = new Evidencia($db);
 $evidencias->idcurso = $id;
 
+
+
+
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php /*
+	<?php 
 		header('Content-type: application/vnd.ms-excel;charset=utf-8');
 		header("Content-Disposition: attachment; filename=ReporteCurso.xls");
 		header("Pragma: no-cache");
 		header("Expires: 0");
 
-		//bgcolor="#FF0000"
+	 ?>
+	<meta charset="UTF-8">
+	<title>REPORTE GENERAL DE CURSO</title>
+</head>
+<body>
 
-	<table border="1">
+FECHA ELABORACION DE REPORTE:<?php echo $reporte->fechareporte;?>
+<br>
+<br>
+<table border="1" >
 		<thead>
-			<tr>
-				<th>a</th>
-				<th>b</th>
-				<th>c</th>
-				<th>d</th>
-				<th>e</th>
+			<tr bgcolor="#FF0000">
+				<th colspan="2">DATOS GENERALES DE CURSO</th>
+				
+
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
+				<td><b>Nombre Curso:</b></td>
+				<td><?php echo $reporte->nombrecurso;?></td>
+				
 			</tr>
+
+			<tr>
+				<td><b>Cantidad de Alumnos Inscritos:</b></td>
+				<td><?php echo $alumno->cantidadalumos;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Instructor</b></td>
+				<td><?php echo $reporte->nombreinstructor;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Inicio de Curso:</b></td>
+				<td><?php echo $reporte->fechacurso;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Horario de Curso:</b></td>
+				<td><?php echo $reporte->horariocurso;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Dependencia de Curso:</b></td>
+				<td><?php echo $reporte->dependenciacurso;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Curso Dirigido a:</b></td>
+				<td><?php echo $reporte->empresadirigida;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Giro:</b></td>
+				<td><?php echo $reporte->giroasociacion;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Lugar Curso:</td>
+				<td><?php echo $reporte->nombrelugar;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Direccion Curso:</td>
+				<td><?php echo $reporte->direccion;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Estado del Curso:</td>
+				<td><?php echo $reporte->estadocurso;?></td>
+			</tr>
+
+
+
 		</tbody>
 	</table>
-
-		*/
-	 ?>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-
-FECHA ELABORACION DE REPORTE:
 <br>
 <br>
 	<table border="1" >
 		<thead>
 			<tr bgcolor="#FF0000">
-				<th colspan="2">DATOS DEL GENERALES DEL CURSO:</th>
+				<th colspan="2">DATOS INSTRUCTOR</th>
 				
 
 			</tr>
 		</thead>
 		<tbody>
+			
+
 			<tr>
-				<td>Nombre Curso:</td>
-				<td>Aqui va el dato correspodiente</td>
+				<td><b>Matricula:</b></td>
+				<td><?php echo $reporte->matricula;?></td>
 				
 			</tr>
 
 			<tr>
-				<td>Alumnos Inscritos</td>
-				<td>Aqui va el dato correspodiente</td>
+				<td><b>Telefono:</b></td>
+				<td><?php echo $reporte->telefono;?></td>
 				
 			</tr>
-
 			<tr>
-				<td>Instructor Activo:</td>
-				<td>Aqui va el dato correspodiente</td>
+				<td><b>Correo Electronico:</b></td>
+				<td><?php echo $reporte->correo;?></td>
 				
-			</tr>
-
-			<tr>
-				<td>Inicio de Curso:</td>
-				<td>Aqui va el dato correspodiente</td>
-				
-			</tr>
-
-			<tr>
-				<td>Horario de Curso:</td>
-				<td>Aqui va el dato correspodiente</td>
-			</tr>
-
-			<tr>
-				<td>Dependencia de Curso:</td>
-				<td>Aqui va el dato correspodiente</td>
-			</tr>
-
-			<tr>
-				<td>Curso Dirigido a:</td>
-				<td>Aqui va el dato correspodiente</td>
-			</tr>
-
-			<tr>
-				<td>Giro:</td>
-				<td>Aqui va el dato correspodiente</td>
-			</tr>
-
-			<tr>
-				<td>Direccion Curso:</td>
-				<td>Aqui va el dato correspodiente</td>
-			</tr>
-
-
-
+			</tr>				
 		</tbody>
 	</table>
 
 	<br>
 	<br>
 
-
-
-	
-
-	
 	<table border="1">
 		<thead>
 			<tr bgcolor="#FF0000">
+				<th colspan="2">DATOS FICHA DE IDENTIFICACION DEL INSTRUCTOR</th>
+				
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Empresa Institucion:</b></td>
+				<td><?php echo $reporte->dependenciacurso;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Años de Experiencia</b></td>
+				<td><?php echo $reporte->anosexperiencia;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>SVPR:</b></td>
+				<td><?php echo $reporte->svpr;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Fecha Adiestramiento:</b></td>
+				<td><?php echo $reporte->fechaadiestramiento;?></td>
+				
+			</tr>
+
+			<tr>
+				<td><b>Curso Realizado:</b></td>
+				<td><?php echo $reporte->cursorealizado;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Grado Escolar:</b></td>
+				<td><?php echo $reporte->gradoescolar;?></td>>
+			</tr>
+
+			<tr>
+				<td><b>Numero de Cursos Impartidos:</b></td>
+				<td><?php echo $reporte->numerocursosimpartidos;?></td>
+			</tr>
+
+			<tr>
+				<td><b>Expiracion Licencia:</b></td>
+				<td><?php echo $reporte->expiracionlicencia;?></td>
+			</tr>
+
+			
+
+
+
+		</tbody>
+	</table>
+
+	
+
+	<br>
+	<br>
+
+	
+
+
+	<table border="1" >
+	    <thead>
+	    	<tr bgcolor="#FF0000">
 				<th colspan="3">INSTRUCTORES AUXILIARES</th>
-			</tr>
-			<tr>
-				
-				<th>Nombre</th>
-				<th>Telefono</th>
-				<th>Direccion</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Aqui va el dato correspodiente</td>>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				
-				
-			</tr>
-		</tbody>
+			</tr>  
+	        <tr>
+	            <th>Nombre Instructor Auxiliar</th>
+	            <th>Telefono</th>
+	            <th>Direccion</th>
+	            
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <?php 
+	        $prep_state = $instructor->getAllInstructoresCurso();
+	        while ($row = $prep_state->fetch(PDO::FETCH_ASSOC))
+	        {
+	    ?>
+	        <tr>                 
+	            <td><?php echo $row['nombre']." ".$row['apaterno']." ".$row['amaterno'];?></td>                                   
+	            <td><?php echo $row['telefono'];?></td>      
+	            <td><?php echo $row['direccion'];?></td>                                            
+	        </tr>
+	    <?php } ?>                                           
+	    </tbody> 
 	</table>
 
 	<br>
 	<br>
+
+
+	<table  border="1">
+	    <thead>
+	    	<tr bgcolor="#FF0000">
+				<th colspan="2">EVIDENCIAS</th>
+			</tr>
+	        <tr>
+	            <th>Formas</th>
+	            <th>Enlace</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <?php 
+	        $prep_state = $evidencias->ConsultarMisEvidencias();
+	        while ($row3 = $prep_state->fetch(PDO::FETCH_ASSOC))
+	        {
+	    ?>
+	        <tr>
+	            <td>
+	                <?php echo $row3['evidencia'];?>
+	            </td>
+	            
+	            <td>
+	                <a href="<?php echo $row3['enlace'];?>" target="_blank"><p class="fa fa-cloud-download"></p> Consultar</a>
+	                
+	            </td>
+	            
+	            
+	           
+	        </tr>
+	    <?php } ?> 
+	    </tbody>
+	</table>
+
+	<br>
+	<br>
+
 
 	<table border="1">
-		<thead>
-			<tr bgcolor="#FF0000">
-				<th colspan="9">ALUMNOS</th>
-			</tr>
-			<tr>
-				
-				<th>Nombre Alumno</th>
-				<th>Lugar de Trabajo</th>
-				<th>Fecha de Nacimiento</th>
-				<th>Edad</th>
-				<th>Estado Civil</th>
-				<th>Escolaridad</th>
-				<th>Domicilio</th>
-				<th>Telefono</th>
-				<th>Correo</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				<td>Aqui va el dato correspodiente</td>
-				
-				
-			</tr>
-		</tbody>
+	    <thead>
+	    <tr bgcolor="#FF0000">
+			<th colspan="10">ALUMNOS</th>
+		</tr>
+	        <tr>
+	            <th>Nombre del Alumno </th>
+	            <th>Lugar de Trabajo</th>
+	            <th>Fecha de Nacimiento</th>
+	            <th>Correo</th>
+	            <th>Edad</th>
+	            <th>Estadocivil</th>
+	            <th>Escolaridad</th>
+	            <th>Domicilio</th>
+	            <th>Telefono</th>
+	            <th>Correo</th>
+
+	        </tr>
+	    </thead>
+	    <?php 
+	            $prep_state = $alumno->ConsultarAlumnosCurso();
+	            while ($row2 = $prep_state->fetch(PDO::FETCH_ASSOC))
+	            {
+	        ?>
+	    <tbody>
+	        <tr>
+	            <td><?php echo $row2['nombre']." ".$row2['apaterno']." ".$row2['amaterno'];?></td>
+	            <td><?php echo $row2['lugartrabajo'];?></td>
+	            <td><?php echo $row2['fechanacimiento'];?></td>
+	            <td><?php echo $row2['correo'];?></td>
+	            <td><?php echo $row2['edad'];?></td>
+	            <td><?php echo $row2['estadocivil'];?></td>
+	            <td><?php echo $row2['escolaridad'];?></td>
+	            <td><?php echo $row2['domicilio'];?></td>
+	            <td><?php echo $row2['telefono'];?></td>
+	            <td><?php echo $row2['correo'];?></td>
+	            
+	        </tr>
+	    <?php } ?>    
+	    </tbody>
 	</table>
+
+
+
+
+
 </body>
 
 

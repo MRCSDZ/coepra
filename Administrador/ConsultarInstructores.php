@@ -88,7 +88,8 @@ require("../admin/permiso_nivel_1.php");
                                             <tr>
                                                 <th>Matricula </th>
                                                 <th>Nombre </th>
-                                                <th>correo</th>
+                                                <th>Correo</th>
+                                                <th>Telefono</th>
                                                 <th>VerInstructor</th>
                                                 
                                             </tr>
@@ -103,6 +104,7 @@ require("../admin/permiso_nivel_1.php");
                                                 <td><?php echo $row['matricula'];?></td>                                   
                                                 <td><?php echo $row['nombreinstructor'];?></td>                                    
                                                 <td><?php echo $row['correo'];?></td>
+                                                <td><?php echo $row['telefono'];?></td>
                                                 <td><a href="VerInstructor.php?idinstructor=<?php echo $row['idusuario'];?>" class="btn btn-info" >Ver Mas</a></td>
                                                              
                                             </tr>

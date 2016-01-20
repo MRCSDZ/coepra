@@ -104,7 +104,7 @@ if($_POST)
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Editar Usuario</h1>
+                        <h1 class="page-header">Editar Mi Perfil</h1>
                     </div>
 
                     <div class="col-lg-12">

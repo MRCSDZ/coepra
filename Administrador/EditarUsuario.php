@@ -29,6 +29,7 @@ if($_POST)
     $usuario->matricula = htmlentities(trim($_POST['matricula']));
     $usuario->rol       = htmlentities(trim($_POST['rol']));
     $usuario->correo    = htmlentities(trim($_POST['correo']));
+    $usuario->telefono    = htmlentities(trim($_POST['telefono']));
     
     // Editar Usuario
     if($usuario->update()){
@@ -135,6 +136,8 @@ if($_POST)
                                 <br>
                             Correo:
                             <input type='text' name='correo' value='<?php echo $usuario->correo;?>' class='form-control' placeholder="Correo electronico" required><br>
+                            Telefono:
+                            <input type='text' name='telefono' value='<?php echo $usuario->telefono;?>' class='form-control' placeholder="Correo electronico" required><br>
 
                             <input type='hidden' name='id' value='<?php echo $id;?>' class='form-control' placeholder="Correo electronico" required><br>
                             <button type="submit" class="btn btn-success" > Actualizar Usuario</button>

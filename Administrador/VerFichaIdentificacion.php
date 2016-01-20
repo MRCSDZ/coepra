@@ -171,6 +171,10 @@ $Mensaje = " ";
 
                         </div>
 
+                        <br>
+                        <br>
+                        <a href="../FichaIdentificacionPDF.php" target="_blank" class="btn btn-info"> <i class="fa fa-print" ></i>Imprimir Ficha de Identificacion</a>
+
 
 
                         

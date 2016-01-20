@@ -100,7 +100,7 @@ $id = $_SESSION['idusuario_global'];
                                     ?>
                                         <tr>
                                             <td>
-                                                <form action="VerAlumnoCurso.php" method="post">
+                                                <form action="VerAlumnoCurso.php" method="POST">
                                                     <input type="hidden" value="<?php echo $row['idcurso'];?>" name="idcurso">
                                                     <input type="hidden" value="<?php echo $row['idalumno'];?>" name="idalumno">
                                                     <button type="submit" class="btn btn-link"><?php echo $row['nombrecompleto'];?></button>

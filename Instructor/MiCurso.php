@@ -13,8 +13,16 @@ include_once '../clases/alumnos.php';
 include_once '../clases/evidencias.php';
 // Construir instancias
 
-$id = $_POST["idcurso"];
-$_SESSION["idcurso_global"] = $id;
+if(isset($_POST["idcurso"]))
+{
+     $id = $_POST["idcurso"]; 
+     $_SESSION["idcurso_global"] = $id;
+}
+else
+{
+    $_SESSION["idcurso_global"] = $id;
+}
+ 
 //Cursos
 $curso = new Curso($db);
 $curso->idcurso = $id;
@@ -327,8 +335,13 @@ else
                                                 
                                             </tr>
                                             <tr>
-                                                <td>Ficha Identificacion de Alumnos</td>
+                                                <td>Ficha Identificacion de Alumnos Vacia</td>
                                                 <td> <a href="../Documentos/DATOS_ALUMNO.doc"><p class="fa fa-download"></p> Descarga</a> </td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td>Ficha Identificacion de Alumnos </td>
+                                                <td> <a href="../FichasAlumnosPDF.php"><p class="fa fa-download"></p> Descarga</a> </td>
                                                
                                             </tr>
                                             <tr>

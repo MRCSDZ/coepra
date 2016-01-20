@@ -24,6 +24,10 @@
 		public $idusuario;
 		public $cantidadtotalalumnos;
 
+		public $sexo;
+		public $fechaelaboracion;
+		public $lugarnacimiento;
+
 
 
 		
@@ -96,13 +100,7 @@
 
     	function ConsultarAlumnosCurso()
         {
-            $sql = "SELECT idalumno,
-            			   nombre, 
-                           apaterno, 
-                           amaterno, 
-                           lugartrabajo,
-                           telefono,
-                           correo 
+            $sql = "SELECT * 
                       FROM alumno 
                      WHERE curso_idcurso = :idcurso ";
 
@@ -117,18 +115,7 @@
 
         function ConsultarAlumno()
         {
-            $sql = "SELECT idalumno,
-            			   nombre, 
-                           apaterno, 
-                           amaterno, 
-                           lugartrabajo,
-                           fechanacimiento,
-                           edad,
-                           estadocivil,
-                           escolaridad,
-                           domicilio,
-                           telefono,
-                           correo
+            $sql = "SELECT *
                       FROM alumno 
                      WHERE idalumno = :idalumno ";
 
@@ -150,6 +137,7 @@
 	        $this->domicilio = $row['domicilio'];
 	        $this->telefono = $row['telefono'];
 	        $this->correo = $row['correo'];
+	        $this->fechaelaboracion = $row['fechaelaboracion'];
 
 
             

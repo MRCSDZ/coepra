@@ -16,6 +16,7 @@ class Usuario
     public $imagen;
     public $rol;
     public $correo;
+    public $telefono;
 
 
     public function __construct($db)
@@ -33,7 +34,8 @@ class Usuario
                                                           matricula  = ?, 
                                                           contrasena = ?, 
                                                           rol        = ?, 
-                                                          correo     = ?";
+                                                          correo     = ?,
+                                                          telefono   = ?";
 
         $prep_state = $this->db_conn->prepare($sql);
 
@@ -44,6 +46,7 @@ class Usuario
         $prep_state->bindParam(5, $this->contrasena);
         $prep_state->bindParam(6, $this->rol);
         $prep_state->bindParam(7, $this->correo);
+        $prep_state->bindParam(8, $this->telefono);
 
         if ($prep_state->execute()) {
             return true;
@@ -60,7 +63,8 @@ class Usuario
                                                      amaterno  = :amaterno, 
                                                      matricula = :matricula, 
                                                      rol       = :rol,
-                                                     correo    = :correo
+                                                     correo    = :correo,
+                                                     telefono  = :telefono
                                                WHERE idusuario = :id";
         // prepare query
         $prep_state = $this->db_conn->prepare($sql);
@@ -72,6 +76,7 @@ class Usuario
         $prep_state->bindParam(':matricula', $this->matricula);
         $prep_state->bindParam(':rol', $this->rol);
         $prep_state->bindParam(':correo', $this->correo);
+        $prep_state->bindParam(':telefono', $this->telefono);
         $prep_state->bindParam(':id', $this->id);
 
         // execute the query
@@ -103,7 +108,7 @@ class Usuario
 
     function getAllUsers()
     {
-        $sql = "SELECT idusuario, nombre, apaterno, amaterno, matricula, rol, correo FROM " . $this->table_name;
+        $sql = "SELECT idusuario, nombre, apaterno, amaterno, matricula, rol, correo, telefono FROM " . $this->table_name;
 
 
         $prep_state = $this->db_conn->prepare($sql);
@@ -131,6 +136,7 @@ class Usuario
         $this->matricula = $row['matricula'];
         $this->rol = $row['rol'];
         $this->correo = $row['correo'];
+        $this->telefono = $row['telefono'];
     }
     
 

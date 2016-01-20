@@ -59,7 +59,7 @@ require("../admin/permiso_nivel_2.php");
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header"><p class="fa fa-ambulance"></p>  Ambulancia 66428</h1>
+                        <h1 class="page-header"><p class="fa fa-ambulance"></p>  Ambulancia</h1>
                     </div>
 
                     <div class="col-lg-6">

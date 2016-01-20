@@ -147,7 +147,7 @@ $otros = $_GET["otros"];
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Guarda TAMP</h1>
+                        <h1 class="page-header">Guardar TAMP</h1>
                     </div>
 
                     <div class="col-lg-12">

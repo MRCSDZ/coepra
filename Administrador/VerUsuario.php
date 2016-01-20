@@ -94,6 +94,9 @@ $usuario->getUser();
                         <br>
                         Correo:
                         <?php echo $usuario->correo;?>
+                        <br>
+                        telefono:
+                        <?php echo $usuario->telefono;?>
 
                         <br>
                         <br>

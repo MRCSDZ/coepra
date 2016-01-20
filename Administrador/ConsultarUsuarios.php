@@ -90,6 +90,7 @@ require("../admin/permiso_nivel_1.php");
                                                 <th>Matricula</th>
                                                 <th>Rol</th>
                                                 <th>Correo</th>
+                                                <th>Telefono</th>
                                             </tr>
                                         </thead>
                                         
@@ -102,7 +103,8 @@ require("../admin/permiso_nivel_1.php");
                                                 <td><a href="VerUsuario.php?id=<?php echo $row['idusuario'];?>"><?php echo $row['nombre']." ".$row['apaterno']." ".$row['amaterno'];?></a></td>
                                                 <td><?php echo $row['matricula'];?></td>                                   
                                                 <td><?php echo $row['rol'];?></td>                                    
-                                                <td><?php echo $row['correo'];?></td>                 
+                                                <td><?php echo $row['correo'];?></td>
+                                                <td><?php echo $row['telefono'];?></td>                  
                                             </tr>
                                         <?php } ?>                                           
                                         </tbody> 

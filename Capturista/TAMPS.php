@@ -64,7 +64,7 @@ require('../Conexiones/BD.php');
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Plataforma Centro Regulador de Urgencias Medicas</h1>
+                        <h1 class="page-header">TAMPS</h1>
                     </div>
 
                     <div class="col-lg-12 col-md-6">

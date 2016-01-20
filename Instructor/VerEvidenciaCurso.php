@@ -81,7 +81,7 @@ $evidencia->ConsultarEvidencia();
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Alumno Curso</h1>
+                        <h1 class="page-header">Evidencia Curso</h1>
                     </div>
                     
 
@@ -110,7 +110,7 @@ $evidencia->ConsultarEvidencia();
                             
                     </form> 
 
-                    <form action="MiCurso.php" method="POST" style="display: inline;">
+                    <form action="MiCurso.php" method="POST" style="display: inline;">-->
                         <input type="hidden" name="idcurso" value="<?php echo $idcurso; ?>" >
                         <button type="submit" class="btn btn-primary">Regresar al Curso</button>
                         
