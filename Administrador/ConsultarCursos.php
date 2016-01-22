@@ -78,7 +78,7 @@ require("../admin/permiso_nivel_1.php");
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Usuarios En el sistema
+                                Cursos en el Sistema
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -153,7 +153,8 @@ require("../admin/permiso_nivel_1.php");
      <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
         });
     });
     </script>

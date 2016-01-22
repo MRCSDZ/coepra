@@ -17,6 +17,13 @@ class Usuario
     public $rol;
     public $correo;
     public $telefono;
+    public $estado;
+
+    public $idc;
+
+    
+
+
 
 
     public function __construct($db)
@@ -137,6 +144,29 @@ class Usuario
         $this->rol = $row['rol'];
         $this->correo = $row['correo'];
         $this->telefono = $row['telefono'];
+        $this->contrasena = $row['contrasena'];
+        $this->estado = $row['estado'];
+        $this->idc = $row['idusuario'];
+    }
+
+    function CambioContrasena()
+    {
+        $sql = "UPDATE " . $this->table_name . " SET contrasena    = :contrasena
+                                                     
+                                               WHERE idusuario = :id";
+        // prepare query
+        $prep_state = $this->db_conn->prepare($sql);
+
+
+        $prep_state->bindParam(':contrasena', $this->contrasena);
+        $prep_state->bindParam(':id', $this->id);
+
+        // execute the query
+        if ($prep_state->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 

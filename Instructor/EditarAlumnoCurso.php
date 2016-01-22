@@ -19,7 +19,6 @@ $alumno->idalumno = $idalumno;
 $alumno->ConsultarAlumno();
 $Mensaje = " ";
 
-// check if the form is submitted
 if($_POST)
 {
 

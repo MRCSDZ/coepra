@@ -18,7 +18,7 @@ $alumno = new Alumnos($db);
 
 $Mensaje = " ";
 
-// check if the submit button yes was clicked
+
 if (isset($_POST['del-btn']))
 {
     $alumno->idalumno = $idalumno;

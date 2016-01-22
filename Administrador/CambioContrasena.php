@@ -4,29 +4,67 @@ session_start();
 require("../admin/instancia.txt");
 require("../admin/permiso_nivel_1.php");
 /******************  NO BORRAR  ******************/
+// 
+$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR! ID not found!');
+
+//
 include_once '../clases/database.php';
-
+include_once '../clases/usuarios.php';
 include_once '../initial.php';
-include_once '../clases/instructores.php';
-$instructor = new Instructores($db);
-$idinstructor = $_COOKIE["idinstructor"];
 
+//
+$usuario = new Usuario($db);
+$usuario->id = $id;
+$usuario->getUser();
 $Mensaje = " ";
 
 
-if (isset($_POST['del-btn'])) 
+if($_POST)
 {
-    $instructor->idinstructorauxiliar = $idinstructor;
-    $instructor->delete();
-    header("Location: EliminarInstructor.php?deleted");
+    if($_POST['pw1']==$_POST['pw2'])
+    {
+
+        $pw= md5($_POST['pw1']);
+
+        // Valores de usuario en POST
+        $usuario->contrasena    = $pw;
+        
+        
+        // Editar Usuario
+        if($usuario->CambioContrasena())
+        {
+            $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
+                                La Contraseña Fue Cambiada Exitosamente
+                            </div>";
+        }
+
+        // 
+        else
+        {
+             $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                &times
+                          </button>
+                    La Contraseña No Pudo Ser Cambiada. Intente de Nuevo
+                </div>";
+        }
+    }
+
+    else
+    {
+        $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                &times
+                          </button>
+                    Las Contraseñas No Coinciden.
+                </div>";
+
+
+    }   
 }
-      // check if the user was deleted
-      if(isset($_GET['deleted'])){
-         $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
-                            El usuario fue eliminado exitosamente
-                        </div>";
-      }
+
+
 
 
 ?>
@@ -82,43 +120,34 @@ if (isset($_POST['del-btn']))
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Eliminar Instructor </h1>
+                        <h1 class="page-header">Editar Usuario</h1>
                     </div>
 
                     <div class="col-lg-12">
                             <?php echo $Mensaje;?> 
-                    </div>
+                        </div>
 
                     <div class="col-lg-12">
-                        <?php
-                            if (isset($_POST['idi'])) 
-                            {
-                        ?>
-                            <form method='post'>
-                                <input type='hidden' name='id' value='id' />
-                                <div class='alert alert-warning'>Estas seguro que quieres eliminar al Usuario?"</div>
-                                <button type='submit' class='btn btn-danger' name='del-btn'>Si</button>
-                                <a href='index.php' class='btn btn-default' role='button'>No</a>
-               
-                            </form>
-                        <?php 
-                            }
+                        <form action='CambioContrasena.php?id=<?php echo $id; ?>' method='POST'>
+                            Contraseña Nueva:
+                            <input type='password' name='pw1' value='' class='form-control' placeholder="Ingresa el nombre"  required><br>
+                            Repetir Contraseña:
+                            <input type='password' name='pw2' value='' class='form-control' placeholder="Ingresa el apellido paterno"  required><br>
+                            <button type="submit" class="btn btn-success" > Actualizar Contraseña</button>
+                            <a href="ConsultarUsuarios.php" class="btn btn-primary"> Regresar a Usuarios</a>
+                            <br>    
+                            <br>
 
-                            else 
-                            {   
-                        ?>
-                        <?php  ?>    
-                            <form action="MiCurso.php" method="POST">
-                                <input type="hidden"  name="idcurso" value="<?php echo $_SESSION["idcurso_global"]; ?>">
-                                <button class="btn btn-primary">Regresar a Curso</button>
-                            </form>
-
-
-                        <?php
-                            }
-                        ?>
-                        
+                        </form>
+                     
                     </div>
+
+
+
+
+                    
+
+                    
                 </div>
                 <!-- /.row -->
             </div>
@@ -131,6 +160,9 @@ if (isset($_POST['del-btn']))
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <!--ALERTA -->
+   
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

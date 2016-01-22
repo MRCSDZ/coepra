@@ -25,7 +25,7 @@ if (isset($_POST['del-btn']))
     $evidencia->EliminarEvidencia();
     header("Location: EliminarEvidencia.php?deleted");
 }
-      // check if the user was deleted
+      
       if(isset($_GET['deleted'])){
          $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
                             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>

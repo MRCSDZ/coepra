@@ -4,11 +4,14 @@ class Administrador
 		
 		//Cantidades 
 		public $cantidadtotalcursos;
+		public $cantidadtotalcursosactivos;
+		public $cantidadtotalcursosterminados;
 		public $cantidadtotaltamp;
 		public $cantidadtotalusuarios;
 		public $cantidadtotalambulancias;
 		public $idfichaidentificacion;
 		public $idusuario;
+
 		
 
 		
@@ -32,6 +35,40 @@ class Administrador
 	        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
 
 	        $this->cantidadtotalcursos = $row['CantidadTotal'];
+
+
+    	}
+
+    	function TotalCursosActivos()
+    	{
+	    	$sql = "SELECT COUNT(idcurso) as CantidadTotal
+	    			FROM curso
+	    			WHERE estadocurso = 'ACTIVO'";
+
+	        $prep_state = $this->db_conn->prepare($sql);
+	        $prep_state->bindParam(':idcurso', $this->idcurso);
+	        $prep_state->execute();
+
+	        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+	        $this->cantidadtotalcursosactivos = $row['CantidadTotal'];
+
+
+    	}
+
+    	function TotalCursosTerminados()
+    	{
+	    	$sql = "SELECT COUNT(idcurso) as CantidadTotal
+	    			FROM curso
+	    			WHERE estadocurso = 'INACTIVO'";
+
+	        $prep_state = $this->db_conn->prepare($sql);
+	        $prep_state->bindParam(':idcurso', $this->idcurso);
+	        $prep_state->execute();
+
+	        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+	        $this->cantidadtotalcursosterminados = $row['CantidadTotal'];
 
 
     	}

@@ -3,6 +3,7 @@
     session_start();
     require("../admin/instancia.txt");
     require("../admin/permiso_nivel_1.php");
+    $validacion = 'pattern="^[A-Za-z0-9 ñ]*[A-Za-z0-9][A-Za-z0-9 ñ]*$" title="NO SE PERMITEN CARACTERES ESPECIALES"';
 /******************  NO BORRAR  ******************/
     //Conexion Base de datos y Creacion de Objetos en Base de datos
     include_once '../clases/database.php';
@@ -117,15 +118,15 @@
                            
                             <form action="AgregarInstructor.php" role="form" method="post" autocomplete="off" style="display: inline;">
                                 Nombre:
-                                <input type="text" name="nombre" class="form-control" placeholder=" Ingrese Nombre"  onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
+                                <input type="text" name="nombre" class="form-control" placeholder=" Ingrese Nombre"  onkeyup="javascript:this.value=this.value.toUpperCase();"  <?php echo $validacion; ?> required><br>
                                 Apellido Paterno:
-                                <input type="text" name="apaterno" class="form-control" placeholder=" Ingrese Apellido Paterno" onkeyup="javascript:this.value=this.value.toUpperCase();" required ><br>
+                                <input type="text" name="apaterno" class="form-control" placeholder=" Ingrese Apellido Paterno" onkeyup="javascript:this.value=this.value.toUpperCase();" <?php echo $validacion; ?> required ><br>
                                 Apellido Materno:
-                                <input type="text" name="amaterno" class="form-control" placeholder=" Ingrese Apellido Materno" onkeyup="javascript:this.value=this.value.toUpperCase();" ><br>
+                                <input type="text" name="amaterno" class="form-control" placeholder=" Ingrese Apellido Materno" onkeyup="javascript:this.value=this.value.toUpperCase();" <?php echo $validacion; ?> ><br>
                                 Telefono:
-                                <input type="Number" name="telefono" class="form-control" placeholder=" Ingrese su Matricula o numero de usuario" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
+                                <input type="Number" name="telefono" class="form-control" placeholder=" Ingrese su Matricula o numero de usuario" onkeyup="javascript:this.value=this.value.toUpperCase();" pattern="[a-zA-Z0-9]{0,9}" required><br>
                                 Direccion:
-                                <input type="text" name="direccion" class="form-control"   onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Calle, Numero, Colonia, Numero, Numero Interior" required><br>
+                                <input type="text" name="direccion" class="form-control"   onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Calle, Numero, Colonia, Numero, Numero Interior" <?php echo $validacion; ?> required><br>
                                 
                                 <button type="submit" class="btn btn-success" >Registrar Instructor Auxiliar</button>
 

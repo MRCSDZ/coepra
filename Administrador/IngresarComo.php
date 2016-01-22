@@ -3,30 +3,22 @@
 session_start();
 require("../admin/instancia.txt");
 require("../admin/permiso_nivel_1.php");
+
 /******************  NO BORRAR  ******************/
+// valor del id
+$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR! ID not found!');
+
+// Clases de base de datos y usuarios
 include_once '../clases/database.php';
-
+include_once '../clases/usuarios.php';
 include_once '../initial.php';
-include_once '../clases/instructores.php';
-$instructor = new Instructores($db);
-$idinstructor = $_COOKIE["idinstructor"];
 
-$Mensaje = " ";
+// Construir instancias
+$usuario = new Usuario($db);
+$usuario->id = $id;
+$usuario->getUser();
 
 
-if (isset($_POST['del-btn'])) 
-{
-    $instructor->idinstructorauxiliar = $idinstructor;
-    $instructor->delete();
-    header("Location: EliminarInstructor.php?deleted");
-}
-      // check if the user was deleted
-      if(isset($_GET['deleted'])){
-         $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
-                            El usuario fue eliminado exitosamente
-                        </div>";
-      }
 
 
 ?>
@@ -82,43 +74,55 @@ if (isset($_POST['del-btn']))
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Eliminar Instructor </h1>
+                        <h1 class="page-header"><?php echo $usuario->nombre." ".$usuario->apaterno." ".$usuario->amaterno;?></h1>
                     </div>
 
-                    <div class="col-lg-12">
-                            <?php echo $Mensaje;?> 
+                    <div class="col-lg-2">
+                        <h1><i class="fa fa-user fa-5x"></i></h1>
                     </div>
 
-                    <div class="col-lg-12">
-                        <?php
-                            if (isset($_POST['idi'])) 
-                            {
-                        ?>
-                            <form method='post'>
-                                <input type='hidden' name='id' value='id' />
-                                <div class='alert alert-warning'>Estas seguro que quieres eliminar al Usuario?"</div>
-                                <button type='submit' class='btn btn-danger' name='del-btn'>Si</button>
-                                <a href='index.php' class='btn btn-default' role='button'>No</a>
-               
-                            </form>
+                    <div class="col-lg-10">
+                        
+                        
+                        <br>
+
                         <?php 
-                            }
+                            $nombre   = $usuario->nombre;
+                            $apaterno = $usuario->apaterno;
+                            $amaterno = $usuario->amaterno;
 
-                            else 
-                            {   
-                        ?>
-                        <?php  ?>    
-                            <form action="MiCurso.php" method="POST">
-                                <input type="hidden"  name="idcurso" value="<?php echo $_SESSION["idcurso_global"]; ?>">
-                                <button class="btn btn-primary">Regresar a Curso</button>
-                            </form>
+                            $_SESSION['nombre_global']=$nombre." ".$apaterno." ".$amaterno;
+                            $_SESSION['matricula_global']= $usuario->matricula; 
+                            $_SESSION['rol_global']=$usuario->rol;
+                            $_SESSION['idusuario_global']=$usuario->idc;
+
+                            
+
+                         ?>
+                         <script type="text/javascript">
+                            window.location="../index.php";
+                        </script>
+
+                        
+
+                        <br>
+                        <br>
+
+                        
+
+                        
 
 
-                        <?php
-                            }
-                        ?>
                         
                     </div>
+
+                    
+
+
+
+                    
+
+                    
                 </div>
                 <!-- /.row -->
             </div>

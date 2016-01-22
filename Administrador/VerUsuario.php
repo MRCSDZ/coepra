@@ -86,23 +86,30 @@ $usuario->getUser();
                         
                         <br>
 
-                        Matricula:
+                        <b>Matricula:</b>
                         <?php echo $usuario->matricula;?>
                         <br>
-                        Rol:
+                        <b>Rol:</b>
                         <?php echo $usuario->rol;?>
                         <br>
-                        Correo:
+                        <b>Correo:</b>
                         <?php echo $usuario->correo;?>
                         <br>
-                        telefono:
+                        <b>Telefono:</b>
                         <?php echo $usuario->telefono;?>
+                        <br>
+                        <b>Estado:</b>
+                        <?php echo $usuario->estado;?>
 
                         <br>
                         <br>
 
                         <a href="EditarUsuario.php?id=<?php echo $id;?>" class="btn btn-primary">Editar Usuario</a>
+
                         <a href="EliminarUsuario.php?id=<?php echo $id;?>" class="btn btn-danger">Eliminar Usuario</a>
+
+                        <a href="IngresarComo.php?id=<?php echo $id;?>" class="btn btn-info">Ingresar Como</a>
+
 
                         
                     </div>

@@ -4,11 +4,12 @@
  session_start();
 
 $matricula = $_POST["mat"];
-$pwd = $_POST["pwd"];
+$pwd = md5($_POST["pwd"]); 
 
 $q = "SELECT * FROM usuario
 	  WHERE matricula = '$matricula' 
-	  AND contrasena = '$pwd'";
+	  AND contrasena = '$pwd'
+	  AND estado = 'ACTIVO'";
 
 $r=$mysqli->query($q);
 $row=$r->fetch_assoc();

@@ -20,7 +20,7 @@ $curso->idusuario = $idusuario;
 $curso->getcurso();
 $Mensaje = " ";
 
-// check if the form is submitted
+
 if($_POST)
 {
 

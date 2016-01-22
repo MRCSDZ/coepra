@@ -12,14 +12,14 @@ include_once '../initial.php';
 $usuario = new Usuario($db);
 $Mensaje = " ";
 
-// check if the submit button yes was clicked
+
 if (isset($_POST['del-btn']))
 {
     $id = $_GET['id'];
     $usuario->delete();
     header("Location: EliminarUsuario.php?deleted");
 }
-      // check if the user was deleted
+      
       if(isset($_GET['deleted'])){
          $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
                             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
@@ -95,7 +95,7 @@ if (isset($_POST['del-btn']))
                         ?>
                             <form method='post'>
                                 <input type='hidden' name='id' value='id' />
-                                <div class='alert alert-warning'>Estas seguro que quieres eliminar al Usuario?"</div>
+                                <div class='alert alert-warning'>Estas seguro que quieres eliminar al Usuario?. Se Borrara todo lo relacionado al mismo</div>
                                 <button type='submit' class='btn btn-danger' name='del-btn'>Si</button>
                                 <a href='index.php' class='btn btn-default' role='button'>No</a>
                

@@ -15,48 +15,65 @@
     //Comprobar Si existen datos en POST
     if ($_POST)
     {
-    
-        // Instancia de usuario
-        include_once '../clases/usuarios.php';
-        $usuario = new Usuario($db);
 
-        // Valores en Usuario
-        $usuario->nombre    = htmlentities(trim($_POST['nombre']));
-        $usuario->apaterno  = htmlentities(trim($_POST['apaterno']));
-        $usuario->amaterno  = htmlentities(trim($_POST['amaterno']));
-        $usuario->matricula = htmlentities(trim($_POST['fmatricula']));
-        $usuario->contrasena = htmlentities(trim($_POST['fcontrasena']));
-        $usuario->rol       = htmlentities(trim($_POST['rol']));
-        $usuario->correo     = htmlentities(trim($_POST['correo']));
-        $usuario->telefono    = htmlentities(trim($_POST['telefono']));
+        if ($_POST['fcontrasena']==$_POST['cfcontrasena'])
+        {
+            //Encriptar Contraseña
+             $pwd = md5($_POST['fcontrasena']);
+            // Instancia de usuario
+            include_once '../clases/usuarios.php';
+            $usuario = new Usuario($db);
+
+            // Valores en Usuario
+            $usuario->nombre    = htmlentities(trim($_POST['nombre']));
+            $usuario->apaterno  = htmlentities(trim($_POST['apaterno']));
+            $usuario->amaterno  = htmlentities(trim($_POST['amaterno']));
+            $usuario->matricula = htmlentities(trim($_POST['fmatricula']));
+            //$usuario->contrasena = htmlentities(trim($_POST['fcontrasena']));
+            $usuario->contrasena = $pwd;
+            $usuario->rol       = htmlentities(trim($_POST['rol']));
+            $usuario->correo     = htmlentities(trim($_POST['correo']));
+            $usuario->telefono    = htmlentities(trim($_POST['telefono']));
 
 
-        // Mensaje si el usuario se creo
-        if($usuario->create()){
-            $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
-                            El usuario fue creado exitosamente
-                        </div>";
-            unset($_POST['nombre']);
-            unset($_POST['apaterno']);
-            unset($_POST['amaterno']);
-            unset($_POST['matricula']);
-            unset($_POST['contrasena']);
-            unset($_POST['rol']);
-            unset($_POST['correo']);
-            unset($_POST['telefono']);
+            // Mensaje si el usuario se creo
+            if($usuario->create()){
+                $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
+                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
+                                El usuario fue creado exitosamente
+                            </div>";
+                unset($_POST['nombre']);
+                unset($_POST['apaterno']);
+                unset($_POST['amaterno']);
+                unset($_POST['matricula']);
+                unset($_POST['contrasena']);
+                unset($_POST['rol']);
+                unset($_POST['correo']);
+                unset($_POST['telefono']);
 
+            }
+
+            // Mensaje si el usuario no se pudo crear
+            else{
+                $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                &times
+                          </button>
+                    Esa Matricula ya esta en uso. Intente de nuevo con otra que este disponible.
+                </div>";
+        
+           }
         }
-
-        // Mensaje si el usuario no se pudo crear
-        else{
+        else
+        {
             $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
-                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
-                            &times
-                      </button>
-                El usuario no se creo
-            </div>";
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                &times
+                          </button>
+                    Las contraseñas no coinciden. Intentalo de Nuevo.
+                </div>";
         }
+
     }
 
 
@@ -125,9 +142,11 @@
                                 Apellido Materno:
                                 <input type="text" name="amaterno" class="form-control" placeholder=" Ingrese Apellido Materno" onkeyup="javascript:this.value=this.value.toUpperCase();" ><br>
                                 Matricula:
-                                <input type="text" name="fmatricula" class="form-control" placeholder=" Ingrese su Matricula o numero de usuario" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
+                                <input type="text" name="fmatricula" class="form-control" placeholder=" Ingrese su Matricula o numero de usuario" onkeyup="javascript:this.value=this.value.toUpperCase();" pattern="[a-zA-Z0-9]{0,9}" title="LA MATRICULA DEBE DE TENER MAX 9 CARACTERES Y NINGUN CARACTER ESPECIAL" required><br>
                                 Contrasena:
                                 <input type="password" name="fcontrasena" class="form-control" placeholder=" Ingrese su contrasena"  required><br>
+                                Vuelva a Confirmar Contraseña:
+                                <input type="password" name="cfcontrasena" class="form-control" placeholder=" Ingrese la contraseña anterior"  required><br>
                                 Rol
                                 <select name="rol" id="" class="form-control">
                                     <option value="ADMINISTRADOR">Administrador</option>
@@ -161,8 +180,7 @@
         <!-- jQuery -->
         <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-         <!--ALERTA -->
-    <script src="../js/alerta.js"></script>
+        
 
         <!-- Bootstrap Core JavaScript -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

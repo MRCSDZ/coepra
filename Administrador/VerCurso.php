@@ -243,7 +243,7 @@ else
                                             <tr>
                                                 <th>Nombre Instructor Auxiliar</th>
                                                 <th>Telefono</th>
-                                                <th>Ver Mas</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -255,13 +255,7 @@ else
                                             <tr>                 
                                                 <td><?php echo $row['nombre']." ".$row['apaterno']." ".$row['amaterno'];?></td>                                   
                                                 <td><?php echo $row['telefono'];?></td>                                    
-                                                <td><form action="VerInstructor.php" method="POST">
-                                                        <center>
-                                                            <input type="hidden" name="idinstructor" value="<?php echo $row['idinstructorauxiliar'];  ?>">
-                                                            <button class="btn btn-default btn-circle" ><i class="fa fa-arrow-circle-right"></i></button>
-                                                        </center>
-                                                    </form>
-                                                </td>
+                                                
                                                               
                                             </tr>
                                         <?php } ?>                                           
@@ -358,7 +352,7 @@ else
                                             <tr>
                                                 <th>Formas</th>
                                                 <th>Enlace</th>
-                                                <th>Modificar/Eliminar</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -378,14 +372,7 @@ else
                                                     
                                                 </td>
                                                 
-                                                <td>
-                                                    <form action="VerEvidenciaCurso.php" method="POST">
-                                                        <center>
-                                                            <input type="hidden" name="idevidencia" value="<?php echo $row3['idevidencia'];  ?>">
-                                                            <button class="btn btn-default btn-circle" ><i class="fa fa-arrow-circle-right"></i></button>
-                                                        </center>
-                                                    </form>
-                                                </td>
+                                                
                                                
                                             </tr>
                                         <?php } ?> 
@@ -419,7 +406,7 @@ else
                                             <th>Lugar de Trabajo</th>
                                             <th>Telefono</th>
                                             <th>Correo</th>
-                                            <th>Ver Mas</th>
+                                           
                                         </tr>
                                     </thead>
                                     <?php 
@@ -433,13 +420,7 @@ else
                                             <td><?php echo $row2['lugartrabajo'];?></td>
                                             <td><?php echo $row2['telefono'];?></td>
                                             <td><?php echo $row2['correo'];?></td>
-                                            <td><form action="VerAlumnoCurso.php" method="POST">
-                                                    <center>
-                                                        <input type="hidden" name="idalumno" value="<?php echo $row2['idalumno'];  ?>">
-                                                        <button class="btn btn-default btn-circle" ><i class="fa fa-arrow-circle-right"></i></button>
-                                                    </center>
-                                                </form>
-                                            </td>
+                                            
                                         </tr>
                                     <?php } ?>    
                                     </tbody>

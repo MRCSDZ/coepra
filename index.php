@@ -52,20 +52,21 @@ else {
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
 
+                <img src="Imagenes/coepra1.png" style="width:400px;height:128px;">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
 
-
+                        
                         <h3 class="panel-title">Bienvenido a COEPRA</h3>
                     </div>
                     <div class="panel-body">
                         <form action="redireccion.php" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control"  placeholder="Matricula" name="mat" type="text"   title="NO PUEDES INGRESAR CARACTERES ESPECIALES"autofocus required>
+                                    <input class="form-control"  placeholder="Matricula" name="mat" type="text"  pattern="[a-zA-Z0-9]{0,9}" title="NO PUEDES INGRESAR CARACTERES ESPECIALES, SOLO NUMEROS Y LETRAS"autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Contraseña" name="pwd" type="password" value="" required>
+                                    <input class="form-control" placeholder="Contraseña" name="pwd" type="password"  value="" required>
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->

@@ -16,7 +16,6 @@ $reporte->FichaIdentificacionUsuario();
 
 
 
-// check if the form is submitted
 
 
 class PDF extends FPDF

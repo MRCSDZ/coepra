@@ -18,7 +18,7 @@ $fichaidentificacion->idusuario = $id;
 $fichaidentificacion->getficha();
 $Mensaje = " ";
 
-// check if the form is submitted
+
 if($_POST)
 {
 

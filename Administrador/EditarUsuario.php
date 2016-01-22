@@ -18,7 +18,6 @@ $usuario->id = $id;
 $usuario->getUser();
 $Mensaje = " ";
 
-// check if the form is submitted
 if($_POST)
 {
 
@@ -30,6 +29,7 @@ if($_POST)
     $usuario->rol       = htmlentities(trim($_POST['rol']));
     $usuario->correo    = htmlentities(trim($_POST['correo']));
     $usuario->telefono    = htmlentities(trim($_POST['telefono']));
+    $usuario->estado    = htmlentities(trim($_POST['estado']));
     
     // Editar Usuario
     if($usuario->update()){
@@ -122,7 +122,7 @@ if($_POST)
                             Apellido Materno:
                             <input type='text' name='amaterno' value='<?php echo $usuario->amaterno;?>' class='form-control' placeholder="Ingresa el apellido materno" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
                             Matricula:
-                            <input type='text' name='matricula' value='<?php echo $usuario->matricula;?>' class='form-control' placeholder="Matricula" required><br>
+                            <input type='text' name='matricula' value='<?php echo $usuario->matricula;?>' class='form-control' placeholder="Matricula" pattern="[a-zA-Z0-9]{0,9}" title="LA MATRICULA DEBE DE TENER MAX 9 CARACTERES Y NINGUN CARACTER ESPECIAL" required><br>
                             Rol:
                             
                                 <select name="rol" id="" class="form-control">
@@ -135,12 +135,21 @@ if($_POST)
                                 </select>
                                 <br>
                             Correo:
-                            <input type='text' name='correo' value='<?php echo $usuario->correo;?>' class='form-control' placeholder="Correo electronico" required><br>
+                            <input type='email' name='correo' value='<?php echo $usuario->correo;?>' class='form-control' placeholder="Correo electronico" required><br>
                             Telefono:
                             <input type='text' name='telefono' value='<?php echo $usuario->telefono;?>' class='form-control' placeholder="Correo electronico" required><br>
-
+                            Estado de Usuario:
+                           
+                            
+                                <select name="estado" class="form-control">
+                                    <option value="<?php echo $usuario->estado;?>" selected><?php echo $usuario->estado;?></option>
+                                    <option value="ACTIVO">ACTIVO</option>
+                                    <option value="INACTIVO">INACTIVO</option>
+                                </select>
+                                <br>
                             <input type='hidden' name='id' value='<?php echo $id;?>' class='form-control' placeholder="Correo electronico" required><br>
                             <button type="submit" class="btn btn-success" > Actualizar Usuario</button>
+                            <a href="CambioContrasena.php?id=<?php echo $id; ?>" class="btn btn-warning"> Cambiar Contraseña</a>
                             <a href="ConsultarUsuarios.php" class="btn btn-primary"> Regresar a Usuarios</a>
                             <br>    
                             <br>

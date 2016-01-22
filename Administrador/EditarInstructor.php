@@ -20,7 +20,7 @@ $instructor->idinstructorauxiliar = $idinstructor;
 $instructor->getInstructor();
 $Mensaje = " ";
 
-// check if the form is submitted
+
 if($_POST)
 {
 

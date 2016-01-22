@@ -96,7 +96,7 @@ require("../admin/permiso_nivel_3.php");
                                 <b>Años Experiencia: </b><?php echo $row["experiencia"];?> <br>
                             </div>
                             <div class="panel-footer">
-                                <a href="ModificarTAMPGeneral.php?id=<?php echo $row['idtamp'];?>">Modificar Datos Generales </a> 
+                                
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ require("../admin/permiso_nivel_3.php");
                                 <b><?php echo $row["otros"];?> </b><br>
                             </div>
                             <div class="panel-footer">
-                                <a href="ModificarTAMPCapacitaciones.php?id=<?php echo $row['idtamp'];?>">Modificar Capacitaciones </a> 
+                                 
                             </div>
                         </div>
                     </div>

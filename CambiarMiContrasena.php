@@ -1,4 +1,5 @@
-<?php 
+<?php
+//^[A-Za-z0-9 ñ]*[A-Za-z0-9][A-Za-z0-9 ñ]*$ 
 /******************  NO BORRAR  ******************/
 session_start();
 require("admin/instancia.txt");
@@ -18,31 +19,58 @@ $usuario->getUser();
 $Mensaje = " ";
 
 if($_POST)
-{
+{   
+    $pwd = md5($_POST["pwd1"]);
+    if($usuario->contrasena == $pwd )
+    {
 
-    // Valores de usuario en POST
-    $usuario->nombre    = htmlentities(trim($_POST['nombre']));
-    $usuario->apaterno  = htmlentities(trim($_POST['apaterno']));
-    $usuario->amaterno  = htmlentities(trim($_POST['amaterno'])); 
-    $usuario->correo    = htmlentities(trim($_POST['correo']));
-    
-    // Editar Usuario
-    if($usuario->update()){
-        $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
-                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
-                            El usuario fue editado exitosamente
-                        </div>";
+        if($_POST["pwd2"] == $_POST["pwd3"])
+        {
+
+            //Valores de usuario en POST
+            $usuario->contrasena =  md5($_POST["pwd2"]);
+            
+            // Editar Usuario
+            if($usuario->CambioContrasena()){
+                $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
+                                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
+                                    La Contraseña de Cambio Exitosamente
+                                </div>";
+            }
+
+            // 
+            else
+            {
+                 $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                    &times
+                              </button>
+                        La Contraseña No se pudo Cambiar. Contacte un Administrador para que se la cambie.
+                    </div>";
+            }
+        }
+
+        else
+        {
+            $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                    &times
+                              </button>
+                        Las Contraseñas Nuevas No Coinciden. Intenta de Nuevo.
+                    </div>";
+        }
+
     }
 
-    // 
-    else{
-         $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
-                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
-                            &times
-                      </button>
-                El usuario no se creo
-            </div>";
-    }
+    else
+    {
+        $Mensaje = "<div class=\"alert alert-danger alert-dismissable\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                &times
+                          </button>
+                    Su Contraseña Actual Esta Equivocada.
+                </div>";
+    }    
 }
 
 
@@ -101,7 +129,7 @@ if($_POST)
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Editar Mi Perfil</h1>
+                        <h1 class="page-header">Cambiar Mi Contraseña</h1>
                     </div>
 
                     <div class="col-lg-12">
@@ -109,32 +137,17 @@ if($_POST)
                         </div>
 
                     <div class="col-lg-12">
-                        <form action='EditarMiPerfil.php' method='POST'>
-                            Nombre:
-                            <input type='text' name='nombre' value='<?php echo $usuario->nombre;?>' class='form-control' placeholder="Ingresa el nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
-                            Apellido Paterno:
-                            <input type='text' name='apaterno' value='<?php echo $usuario->apaterno;?>' class='form-control' placeholder="Ingresa el apellido paterno" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
-                            Apellido Materno:
-                            <input type='text' name='amaterno' value='<?php echo $usuario->amaterno;?>' class='form-control' placeholder="Ingresa el apellido materno" onkeyup="javascript:this.value=this.value.toUpperCase();" required><br>
-                            Matricula:
-                            <input type='text' name='matricula' value='<?php echo $usuario->matricula;?>' class='form-control' placeholder="Matricula" disabled><br>
-                            Rol:
+                        <form action='CambiarMiContrasena.php' method='POST'>
+                            Contraseña Anterior:
+                            <input type='text' name='pwd1' value='' class='form-control' placeholder="Contraseña Actual" required><br>
+                            Nueva Contraseña:
+                            <input type='text' name='pwd2' value='' class='form-control' placeholder="Nueva Contraseña"  required><br>
+                            Repetir Nueva Contraseña:
+                            <input type='text' name='pwd3' value='' class='form-control' placeholder="Repetir Nueva Contraseña"  required><br>
                             
-                                <select name="rol" class="form-control" disabled>
-                                    <option value="<?php echo $usuario->rol;?>" selected><?php echo $usuario->rol;?></option>
-                                    <option value="ADMINISTRADOR">Administrador</option>
-                                    <option value="CAPTURISTA">Capturista</option>
-                                    <option value="INSTRUCTOR">Instructor</option>
-                                    <option value="CAPTURISTA_HOSPITALARIO">Capturista Hospitalario</option>
-                                    <option value="ESTADISTA">Estadistica</option>
-                                </select>
-                                <br>
-                            Correo:
-                            <input type='text' name='correo' value='<?php echo $usuario->correo;?>' class='form-control' placeholder="Correo electronico" required><br>
-
                             <input type='hidden' name='id' value='<?php echo $id;?>' class='form-control' placeholder="Correo electronico" required><br>
-                            <button type="submit" class="btn btn-success" > Actualizar Usuario</button>
-                            <a href="CambiarMiContrasena.php" class="btn btn-warning"> Cambiar Contraseña</a>
+                            <button type="submit" class="btn btn-success" > Actualizar Contraseña</button>
+                            
                             <a href="index.php" class="btn btn-primary"> Regresar a Inicio</a>
                             <br>    
                             <br>

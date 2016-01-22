@@ -12,14 +12,14 @@ $fichaidentificacion = new Fichaidentificacion($db);
 $id = $_SESSION['idusuario_global'];
 $Mensaje = " ";
 
-// check if the submit button yes was clicked
+
 if (isset($_POST['del-btn']))
 {
     $fichaidentificacion->idusuario = $id;
     $fichaidentificacion->delete();
     header("Location: EliminarFichaIdentificacion.php?deleted");
 }
-      // check if the user was deleted
+     
       if(isset($_GET['deleted'])){
          $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
                             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>

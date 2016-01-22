@@ -19,7 +19,7 @@ $evidencia->idevidencia = $idevidencia;
 $evidencia->ConsultarEvidencia();
 $Mensaje = " ";
 
-// check if the form is submitted
+
 if($_POST)
 {
 

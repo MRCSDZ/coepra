@@ -11,6 +11,8 @@ include_once '../clases/administrador.php';
 $admin = new Administrador($db);
 
 $admin->TotalCursosImpartidos();
+$admin->TotalCursosActivos();
+$admin->TotalCursosTerminados();
 $admin->TotalUsuariosRegistrados();
 $admin->TotalTAMPSRegistrados();
 
@@ -77,7 +79,7 @@ $admin->TotalTAMPSRegistrados();
                     <div class="col-lg-12">
 
                         <!--CAJA #1-->            
-                        <div class="col-lg-12 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <div class="row">
@@ -99,7 +101,57 @@ $admin->TotalTAMPSRegistrados();
                                 </a>
                             </div>
                         </div>
+                        <!--CAJA #1--> 
+
+                        <!--CAJA #1-->            
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-bookmark fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><?php echo $admin->cantidadtotalcursosactivos;?></div>
+                                            <div>Cantidad Cursos Activos</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="ConsultarCursos.php">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">Ver Mas...</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                         <!--CAJA #1-->  
+
+                        <!--CAJA #1-->            
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-bookmark fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><?php echo $admin->cantidadtotalcursosterminados;?></div>
+                                            <div>Cantidad Cursos Terminados</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="ConsultarCursos.php">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">Ver Mas...</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--CAJA #1-->   
 
 
                         <!--CAJA #2-->  
@@ -168,7 +220,7 @@ $admin->TotalTAMPSRegistrados();
                                         </div>
                                     </div>
                                 </div>
-                                <a href="ConsultarAmbulancias.php">
+                                <a href="#">
                                     <div class="panel-footer">
                                         <span class="pull-left">Ver Mas...</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -193,7 +245,7 @@ $admin->TotalTAMPSRegistrados();
                                         </div>
                                     </div>
                                 </div>
-                                <a href="ConsultarHospitales.php">
+                                <a href="#">
                                     <div class="panel-footer">
                                         <span class="pull-left">Ver Mas...</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
