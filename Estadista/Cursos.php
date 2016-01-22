@@ -71,14 +71,14 @@ require("../admin/permiso_nivel_1.php");
                    
  
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Alumnos</h1>
+                        <h1 class="page-header">Consultar Cursos</h1>
                     </div>
 
 
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Alumnos En el sistema
+                                Cursos en el Sistema
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -86,38 +86,31 @@ require("../admin/permiso_nivel_1.php");
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Nombre Alumno </th>
-                                                <th>Lugar de Trabajo</th>
-                                                <th>Fecha de nacimiento</th>
-                                                <th>edad</th>
-                                                <th>estado civil</th>
-                                                <th>escolaridad</th>
-                                                <th>domicilio</th>
-                                                <th>telefono</th>
-                                                <th>correo</th>
-                                                <th>Curso </th>
-                                                <th>Instructor</th>
+                                                <th>Numero de Curso</th>
+                                                <th>Nombre de Curso</th>
+                                                <th>Imparte</th>
+                                                <th>lugar</th>
+                                                <th>Empresa dirigida</th>
+                                                <th>Giro Asociacion</th>
+                                                <th>Estado del Curso</th>
+                                               
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
                                         <?php 
-                                            $prep_state = $admin->ConsultarAlumnos();
+                                            $prep_state = $admin->ConsultarCursos();
                                             while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
                                         ?>
                                             <tr>                 
-                                                <td><?php echo $row['nombrealumno'];?></td>
-                                                <td><?php echo $row['lugartrabajo'];?></td>
-                                                <td><?php echo $row['fechanacimiento'];?></td>
-                                                <td><?php echo $row['edad'];?></td>
-                                                <td><?php echo $row['estadocivil'];?></td>
-                                                <td><?php echo $row['escolaridad'];?></td>
-                                                <td><?php echo $row['domicilio'];?></td>
-                                                <td><?php echo $row['telefono'];?></td>
-                                                <td><?php echo $row['correo'];?></td>
+                                                <td><?php echo $row['idcurso'];?></td>
+                                                <td><?php echo $row['nombrecurso'];?></td>                                   
+                                                <td><?php echo $row['nombrecompleto'];?></td>                                    
+                                                <td><?php echo $row['nombrelugar'];?></td>
+                                                <td><?php echo $row['empresadirigida'];?></td>
+                                                <td><?php echo $row['giroasociacion'];?></td>
+                                                <td><?php echo $row['estadocurso'];?></td>
                                                 
-                                                <td><a href="VerCurso.php?idcurso=<?php echo $row['idcurso'];?>?idusuario<?php echo $row['idusuario'];?>"><?php echo $row['nombrecurso'];?></a></td>
-                                                <td><a href="VerInstructor.php?idinstructor=<?php echo $row['idusuario'];?>"><?php echo $row['nombreinstructor'];?></a></td>
                                                              
                                             </tr>
                                         <?php } ?>                                           
@@ -160,11 +153,8 @@ require("../admin/permiso_nivel_1.php");
      <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true,
-                "scrollX": true,
-                "ordering": false,
-                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
                 
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
         });
     });
     </script>

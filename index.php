@@ -43,7 +43,28 @@ else {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style type="text/css">    
+        .img-logo{
+            width: 360px;
+            height: auto;
+            margin-top: 15%;
+        }
+        
+        .panel-heading{
+            text-align: center;
+        }
 
+        .btn{
+            background-color: #EE1C25;
+            border-color: #EE1C25;
+        }
+
+        .btn:hover{
+            background-color: #C31F26;
+            border-color: #C31F26;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,12 +73,12 @@ else {
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
 
-                <img src="Imagenes/coepra1.png" style="width:400px;height:128px;">
+                <img src="Imagenes/coepra1.png" class="img-logo">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
 
                         
-                        <h3 class="panel-title">Bienvenido a COEPRA</h3>
+                        <h3 class="panel-title">Bienvenido</h3>
                     </div>
                     <div class="panel-body">
                         <form action="redireccion.php" method="POST">

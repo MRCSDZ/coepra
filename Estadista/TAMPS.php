@@ -71,14 +71,14 @@ require("../admin/permiso_nivel_1.php");
                    
  
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Alumnos</h1>
+                        <h1 class="page-header">Consultar TAMPS</h1>
                     </div>
 
 
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Alumnos En el sistema
+                                TAMPS En el sistema
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -86,38 +86,46 @@ require("../admin/permiso_nivel_1.php");
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Nombre Alumno </th>
-                                                <th>Lugar de Trabajo</th>
-                                                <th>Fecha de nacimiento</th>
-                                                <th>edad</th>
-                                                <th>estado civil</th>
-                                                <th>escolaridad</th>
-                                                <th>domicilio</th>
-                                                <th>telefono</th>
-                                                <th>correo</th>
-                                                <th>Curso </th>
-                                                <th>Instructor</th>
+                                                <th>Jurisdiccion</th>
+                                                <th>Nombre TAMP </th>
+                                                <th>Sexo</th>
+                                                <th>Fecha de Nacimiento</th>
+                                                <th>Escolaridad</th>
+                                                <th>Nivel</th>
+                                                <th>Direccion</th>
+                                                <th>Municipio</th>
+                                                <th>Telefonos</th>
+                                                <th>Correo</th>
+                                                <th>TAMP</th>
+                                                <th>Asocicacion Servicio</th>
+                                                <th>Asocicacion Curso</th>
+                                                <th>Experiencia</th>
+                                                
+
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
                                         <?php 
-                                            $prep_state = $admin->ConsultarAlumnos();
+                                            $prep_state = $admin->ConsultarTAMPS();
                                             while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
                                         ?>
                                             <tr>                 
-                                                <td><?php echo $row['nombrealumno'];?></td>
-                                                <td><?php echo $row['lugartrabajo'];?></td>
+                                                <td><?php echo $row['jurisdiccion'];?></td>                                   
+                                                <td><?php echo $row['nombre']." ".$row['apaterno']." ".$row['amaterno'];?></td>                                    
+                                                <td><?php echo $row['sexo'];?></td>
                                                 <td><?php echo $row['fechanacimiento'];?></td>
-                                                <td><?php echo $row['edad'];?></td>
-                                                <td><?php echo $row['estadocivil'];?></td>
                                                 <td><?php echo $row['escolaridad'];?></td>
-                                                <td><?php echo $row['domicilio'];?></td>
-                                                <td><?php echo $row['telefono'];?></td>
+                                                <td><?php echo $row['nivel'];?></td>
+                                                <td><?php echo $row['direccion'];?></td>
+                                                <td><?php echo $row['municipio'];?></td>
+                                                <td><?php echo $row['telefono1']." ".$row['telefono2'];?></td>
                                                 <td><?php echo $row['correo'];?></td>
+                                                <td><?php echo $row['TAMP'];?></td>
+                                                <td><?php echo $row['asociacionservicio'];?></td>
+                                                <td><?php echo $row['asociacioncurso'];?></td>
+                                                <td><?php echo $row['experiencia'];?></td>
                                                 
-                                                <td><a href="VerCurso.php?idcurso=<?php echo $row['idcurso'];?>?idusuario<?php echo $row['idusuario'];?>"><?php echo $row['nombrecurso'];?></a></td>
-                                                <td><a href="VerInstructor.php?idinstructor=<?php echo $row['idusuario'];?>"><?php echo $row['nombreinstructor'];?></a></td>
                                                              
                                             </tr>
                                         <?php } ?>                                           

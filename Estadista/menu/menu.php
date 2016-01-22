@@ -48,37 +48,57 @@
                         <li>
                             <a href="index.php"><i class="fa fa-home fa-fw"></i> Inicio</a>
                             
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                        <li>
-                            <a href="Cursos.php"><i class="fa fa-dashboard fa-fw"></i> Panel Cursos</a>
                             
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-bookmark"></i> Cursos<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-            
-                                <li>
-                                    <a href="CursosActivos.php">Activos</a>
-                                </li>
-                                <li>
-                                    <a href="CursosTerminados.php">Terminados</a>
-                                </li>
-                                
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href="AlumnosCursos.php"><i class="fa fa-group fa-fw"></i> Alumnos</a>
+                         
                             
-                            <!-- /.nav-second-level -->
+                            <a href="Estadista.php"><i class="fa fa-dashboard fa-fw"></i> Panel Estadista</a>
                         </li>
+
+
+                        <li>
+                               <a href="FichaIdentificacion.php"><i class="fa fa-file fa-fw"></i> Ficha de Identificacion</a>
+                            
+                            
+                        </li>
+
+
+                        <li>
+                            <a href="Cursos.php"><i class="fa fa-bookmark"></i> Cursos</span></a>
+                            
+                           
+                        </li>
+
+                        <li>
+                            <a href="Alumnos.php"><i class="fa fa-group"></i> Alumnos</span></a>
+                            
+                           
+                        </li>
+
+                        <li>
+                            <a href="TAMPS.php"><i class="fa fa-user-md"></i> TAMPS</span></a>
+                            
+                            
+                        </li>
+
+                        <li>
+                            <a href="Hospitales.php"><i class="fa fa-hospital-o"></i> Hospitales</span></a>
+                            
+                           
+                        </li>
+
+                        <li>
+                            <a href="Ambulancias.php"><i class="fa fa-ambulance"></i> Ambulancias</span></a>
+                            
+                            
+                        </li>
+
+                        
+
+
+
 
                         
                         

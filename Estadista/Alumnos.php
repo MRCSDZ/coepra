@@ -115,9 +115,9 @@ require("../admin/permiso_nivel_1.php");
                                                 <td><?php echo $row['domicilio'];?></td>
                                                 <td><?php echo $row['telefono'];?></td>
                                                 <td><?php echo $row['correo'];?></td>
+                                                <td><?php echo $row['nombrecurso'];?></td>
                                                 
-                                                <td><a href="VerCurso.php?idcurso=<?php echo $row['idcurso'];?>?idusuario<?php echo $row['idusuario'];?>"><?php echo $row['nombrecurso'];?></a></td>
-                                                <td><a href="VerInstructor.php?idinstructor=<?php echo $row['idusuario'];?>"><?php echo $row['nombreinstructor'];?></a></td>
+                                                <td><?php echo $row['nombreinstructor'];?></td>
                                                              
                                             </tr>
                                         <?php } ?>                                           
