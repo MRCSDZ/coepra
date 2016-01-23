@@ -341,6 +341,28 @@
                 
         }
 
+         function MostrarMisCursosGeneral()
+        {
+          $sql="    SELECT idcurso, 
+                           nombrecurso, 
+                           fechacurso, 
+                           empresadirigida,
+                           estadocurso
+                      FROM curso 
+                INNER JOIN fichaidentificacion 
+                        ON fichaidentificacion.idfichaidentificacion = curso.fechaidentificacion_idfechaidentificacion
+             WHERE fichaidentificacion.usuario_idusuario = :idusuario"; 
+
+          $prep_state = $this->db_conn->prepare($sql);
+          $prep_state->bindParam(':idusuario', $this->idusuario);
+          $prep_state->execute();
+
+          return $prep_state;
+          $db_conn = NULL;
+            
+
+        }
+
         
 
 

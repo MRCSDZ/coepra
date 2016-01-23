@@ -52,53 +52,19 @@
                         </li>
 
 
-                        <li>
-                            <a href="#"><i class="fa fa-bookmark"></i> Cursos<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-            
-                                <li>
-                                    <a href="Cursos.php">Panel</a>
-                                </li>
-                                <li>
-                                    <a href="CrearCurso.php">Crear</a>
-                                </li>
-                                
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
 
-                         <li>
-                            <a href="#"><i class="fa fa-user-md"></i> TAMPS<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="TAMPS.php">Panel</a>
-                                </li>
-                                <li>
-                                    <a href="AgregarTAMPS.php">Agregar</a>
-                                </li>
-                                
-
-                                 <li>
-                                    <a href="ConsultarTAMPS.php">Consultar</a>
-                                </li>
-
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                         
 
                         <li>
                             <a href="#"><i class="fa fa-ambulance"></i> Ambulancias<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="Ambulancias.php">Panel</a>
-                                </li>
+                                
                                 <li>
                                     <a href="AgregarAmbulancias.php">Agregar</a>
                                 </li>
                                 <li>
-                                    <a href="Consultarambulancias.php">Consultar</a>
+                                    <a href="ConsultarAmbulancias.php">Consultar</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -110,55 +76,53 @@
 
                          
 
-                        <li>
-                            <a href="#"><i class="fa fa-group"></i> Usuarios<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="CrearUsuario.php">Agregar</a>
-                                </li>
-                                <li>
-                                    <a href="ConsultarUsuarios.php">Consultar</a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
 
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard"></i> Administrador<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="Administrador.php">Panel</a>
-                                </li>
-                                <li>
-                                    <a href="ConsultarCursos.php">Consultar Cursos</a>
-                                </li>
-                                <li>
-                                    <a href="ConsultarTums.php">Consultar TUMS</a>
-                                </li>
-                                <li>
-                                    <a href="ConsultarAmbulancias.php">Consultar Ambulancias</a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
 
                         <li>
                             <a href="#"><i class="fa fa-hospital-o"></i> Hospitales<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="Administrador.php">Panel</a>
+                                    <a href="AgregarHospitales.php">Agregar Hospitales</a>
                                 </li>
                                 <li>
-                                    <a href="ConsultarCursos.php">Consultar Cursos</a>
+                                    <a href="ConsultarHospitales.php">Consultar Hospitales</a>
+                                </li>
+                                
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                         <li>
+                            <a href="#"><i class="fa fa-user"></i> Personal<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="AgregarPersonales.php">Agregar Personales</a>
                                 </li>
                                 <li>
-                                    <a href="ConsultarTums.php">Consultar TUMS</a>
+                                    <a href="ConsultarPersonales.php">Consultar Personales</a>
+                                </li>
+                                
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-medkit"></i> Servicios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="AgregarServiciosDisponibles.php">Agregar Servicios</a>
                                 </li>
                                 <li>
-                                    <a href="ConsultarAmbulancias.php">Consultar Ambulancias</a>
+                                    <a href="ConsultarServiciosDisponibles.php">Consultar Servicios</a>
                                 </li>
+                                
                                 
                             </ul>
                             <!-- /.nav-second-level -->

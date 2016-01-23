@@ -4,18 +4,21 @@ session_start();
 require("../admin/instancia.txt");
 /******************  NO BORRAR  ******************/
 require('Conexiones/BD.php'); 
-$query="SELECT  numplacas,   
-                                marca,
-                                modelo, 
-                                ano, 
-                                numeconomico, 
-                                tiposervicio, 
+$query="SELECT  matricula,
+                                nombre,
+                                apaterno,
+                                amaterno,
+                                cargo,
+                                servicio,
+                                piso,
                                 telefono,
                                 telefono2,
-                                comentarios,
-                                hospitales_id                  
+                                ext,
+                                turno,
+                                dias,
+                                hospitales_id                 
                  
-          FROM ambulancias";
+          FROM personales";
     
 $resultado=$mysqli->query($query);
 ?>
@@ -77,7 +80,7 @@ $resultado=$mysqli->query($query);
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Ambulancias</h1>
+                        <h1 class="page-header">Consultar Personal</h1>
                     </div>
 
                     <div class="col-lg-12">
@@ -90,15 +93,15 @@ $resultado=$mysqli->query($query);
                                 <div class="dataTable_wrapper">
                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
-                                            <th>Placas</th>
-                                            <th>marca</th>
-                                            <th>modelo</th>
-                                            <th>ano</th>
-                                            <th>numeconomico</th>
-                                            <th>tiposervicio</th>
-                                            <th>telefono</th>
-                                            <th>comentarios</th>
+                                        <tr>                                            
+                                            <th>Matricula</th>
+                                            <th>Nombre</th>
+                                            <th>Cargo</th>
+                                            <th>Servicio</th>
+                                            <th>Telefono</th>
+                                            <th>Ext.</th>
+                                            <th>Turno</th>
+                                            <th>Dias Laborales</th>
                                             
 
                                         </tr>
@@ -106,14 +109,14 @@ $resultado=$mysqli->query($query);
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="ModificarAmbulanciaGeneral.php?numplacas=<?php echo $row['numplacas'];?>"><?php echo $row['numplacas'];?></a></td>
-                                                <td><?php echo $row['marca'];?></td> 
-                                                <td><?php echo $row['modelo'];?></td> 
-                                                <td><?php echo $row['ano'];?></td>                                                 
-                                                <td><?php echo $row['numeconomico'];?></td>
-                                                <td><?php echo $row['tiposervicio'];?></td>   
-                                                <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>                          
-                                                <td><?php echo $row['comentarios'];?></td>
+                                            <td><a href="ModificarPersonalGeneral.php?matricula=<?php echo $row['matricula'];?>"><?php echo $row['matricula'];?></a></td>
+                                                <td><?php echo $row['nombre']."<br>".$row['apaterno']."<br>".$row['amaterno'];?></td> 
+                                                <td><?php echo $row['cargo'];?></td> 
+                                                <td><?php echo $row['servicio'];?></td> 
+                                                <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>    
+                                                <td><?php echo $row['ext'];?></td> 
+                                                <td><?php echo $row['turno'];?>
+                                                <td><?php echo $row['dias'];?></td>   
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
@@ -150,7 +153,7 @@ $resultado=$mysqli->query($query);
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

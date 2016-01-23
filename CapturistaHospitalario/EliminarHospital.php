@@ -1,23 +1,16 @@
+
 <?php 
 /******************  NO BORRAR  ******************/
 session_start();
 require("../admin/instancia.txt");
-require("../admin/permiso_nivel_5.php");
 /******************  NO BORRAR  ******************/
-$id = $_SESSION['idusuario_global'];
-// Clases de base de datos y usuarios
-include_once '../clases/database.php';
-include_once '../clases/fichaidentificacion.php';
-include_once '../initial.php';
+require('Conexiones/BD.php');
+$id = $_POST["id"];
 
-// Construir instancias
-$fichaidentificacion = new Fichaidentificacion($db);
-$fichaidentificacion->id = $id;
-$fichaidentificacion->exist();
 
-$con = " ";
-$sin = " ";
-$idficha = " ";
+$query="DELETE FROM hospitales WHERE id='$id'";
+$resultado=$mysqli->query($query);
+
 
 ?>
 <!DOCTYPE html>
@@ -70,55 +63,15 @@ $idficha = " ";
                 <div class="row">
 
                    
-                   
+
                     <div class="col-lg-12">
-                        <h1 class="page-header">Crear Curso</h1>
+                        <h1 class="page-header">El Registro <?php echo $id; ?> del Hospital fue Eliminado</h1>
                     </div>
 
                     <div class="col-lg-12">
-                        <?php 
 
-                            $estatus= $fichaidentificacion->comprobacion;
-
-                            if ($estatus > 0) 
-                            {
-                                //echo "si tiene su ficha";
-                                $sin = "hidden";
-                                $con = " ";
-                                $_SESSION['fichainstructor'] = $fichaidentificacion->idf;
-                            }
-
-                            else
-                            {
-                                //echo "no tiene ficha noob";
-                                $sin = "";
-                                $con = "hidden";
-                                $idficha = " ";
-
-                            }
-
-                        ?>   
-                        <fieldset <?php echo $sin; ?> >
-                            <center><h3>Instructor No puedes impartir un curso si no tienes una ficha de identificacion </h3></center>
-                            <center><a href="CrearFichaIdentificacion.php" class="btn btn-primary">Crear Ficha de Identificacion</a></center>
-                        </fieldset>
-
-                        <fieldset <?php echo $con; ?> >
-                            <center><h3> Usted ya cuenta con su ficha de identifiacion presione continuar para crear el curso o en editar para modificarla</h3></center>
-                            <center>
-                                
-                                <input type="hidden" value="<?php echo $idficha ?>" name="idficha">
-                                
-                               
-                                <a href="RegistroCurso.php" class="btn btn-success">Registrar Nuevo Curso</a>
-                                <a href="EditarFichaIdentificacion.php" class="btn btn-primary">Modificar Ficha de Identificacion</a>    
-                                
-                            </center>
-                        </fieldset>
-
-
-
-                    
+                        <a href="ConsultarHospitales.php">Consultar Hospital</a>
+                        
                         
                         
                     </div>

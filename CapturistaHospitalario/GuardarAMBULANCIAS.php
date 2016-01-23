@@ -2,22 +2,47 @@
 /******************  NO BORRAR  ******************/
 session_start();
 require("../admin/instancia.txt");
-require("../admin/permiso_nivel_5.php");
 /******************  NO BORRAR  ******************/
-$id = $_SESSION['idusuario_global'];
-// Clases de base de datos y usuarios
-include_once '../clases/database.php';
-include_once '../clases/fichaidentificacion.php';
-include_once '../initial.php';
 
-// Construir instancias
-$fichaidentificacion = new Fichaidentificacion($db);
-$fichaidentificacion->id = $id;
-$fichaidentificacion->exist();
+require('Conexiones/BD.php');
 
-$con = " ";
-$sin = " ";
-$idficha = " ";
+$numplacas = $_GET["numplacas"];
+$marca = $_GET["marca"];
+$modelo = $_GET["modelo"];
+$ano = $_GET["ano"];
+$numeconomico = $_GET["numeconomico"];
+$tiposervicio = $_GET["tiposervicio"];
+$telefono = $_GET["telefono"];
+$telefono2 = $_GET["telefono2"];
+$comentarios = $_GET["comentarios"];
+$hospitales_id = $_GET["hospitales_id"];
+
+//$idusuario;
+
+ $query="INSERT INTO  ambulancias (numplacas,   
+                                marca,
+                                modelo, 
+                                ano, 
+                                numeconomico, 
+                                tiposervicio, 
+                                telefono,
+                                telefono2,
+                                comentarios,
+                                hospitales_id)
+                                   VALUES ('$numplacas', 
+                                           '$marca',
+                                           '$modelo', 
+                                           '$ano', 
+                                           '$numeconomico', 
+                                           '$tiposervicio',  
+                                           '$telefono',
+                                           '$telefono2',
+                                           '$comentarios',
+                                           '$hospitales_id')";
+    
+    $resultado=$mysqli->query($query);
+
+//$lastid = $results->lastInsertId();
 
 ?>
 <!DOCTYPE html>
@@ -70,57 +95,39 @@ $idficha = " ";
                 <div class="row">
 
                    
-                   
+
                     <div class="col-lg-12">
-                        <h1 class="page-header">Crear Curso</h1>
+                        <h1 class="page-header">Guarda Ambulancias</h1>
                     </div>
 
                     <div class="col-lg-12">
-                        <?php 
 
-                            $estatus= $fichaidentificacion->comprobacion;
+                      <?php 
 
-                            if ($estatus > 0) 
-                            {
-                                //echo "si tiene su ficha";
-                                $sin = "hidden";
-                                $con = " ";
-                                $_SESSION['fichainstructor'] = $fichaidentificacion->idf;
-                            }
+                           
 
-                            else
-                            {
-                                //echo "no tiene ficha noob";
-                                $sin = "";
-                                $con = "hidden";
-                                $idficha = " ";
+                            
 
-                            }
-
-                        ?>   
-                        <fieldset <?php echo $sin; ?> >
-                            <center><h3>Instructor No puedes impartir un curso si no tienes una ficha de identificacion </h3></center>
-                            <center><a href="CrearFichaIdentificacion.php" class="btn btn-primary">Crear Ficha de Identificacion</a></center>
-                        </fieldset>
-
-                        <fieldset <?php echo $con; ?> >
-                            <center><h3> Usted ya cuenta con su ficha de identifiacion presione continuar para crear el curso o en editar para modificarla</h3></center>
-                            <center>
-                                
-                                <input type="hidden" value="<?php echo $idficha ?>" name="idficha">
-                                
-                               
-                                <a href="RegistroCurso.php" class="btn btn-success">Registrar Nuevo Curso</a>
-                                <a href="EditarFichaIdentificacion.php" class="btn btn-primary">Modificar Ficha de Identificacion</a>    
-                                
-                            </center>
-                        </fieldset>
+                           
+                            
 
 
 
-                    
-                        
-                        
+
+                        ?>
+                        <center>    
+                            <?php if($resultado>0){ ?>
+                            
+                                <h1>Registro de Ambulancia guardado correctamente </h1>
+                                <a href="ConsultarAmbulancias.php"> Consultar Ambulancias ya Registradas</a>
+                                <?php }else{ ?>
+                                    <h1>Error al Guardar Ambulancia</h1>   
+                                    </br>
+                                    <a href="ConsultarAmbulancias.php">Regresar</a>     
+                                <?php   } ?>        
+                        </center>
+
+              
                     </div>
 
 

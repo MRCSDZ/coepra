@@ -147,7 +147,7 @@ $alumnos->CantidadTotalAlumnosMisCursos();
                                     </div>
                                 </div>
                             </div>
-                            <a href="AlumnosCursos.php">
+                            <a href="CursosGeneral.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver Mas...</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -34,7 +34,7 @@ require("../admin/permiso_nivel_5.php");
         if($curso->create()){
             $Mensaje = "<div class=\"alert alert-success alert-dismissable\">
                             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times</button>
-                            El usuario fue creado exitosamente
+                            El Curso fue creado exitosamente. Usted sera redireccionado.
                         </div>";
             unset($_POST['nombrecurso']);
             unset($_POST['fechacurso']);
@@ -54,7 +54,7 @@ require("../admin/permiso_nivel_5.php");
                 <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">
                             &times
                       </button>
-                El usuario no se creo
+                El Curso no se pudo crear. Intente de Nuevo.
             </div>";
         }
     }

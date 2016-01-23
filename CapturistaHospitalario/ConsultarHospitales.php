@@ -3,21 +3,28 @@
 session_start();
 require("../admin/instancia.txt");
 /******************  NO BORRAR  ******************/
-require('Conexiones/BD.php'); 
-$query="SELECT  numplacas,   
-                                marca,
-                                modelo, 
-                                ano, 
-                                numeconomico, 
-                                tiposervicio, 
-                                telefono,
-                                telefono2,
-                                comentarios,
-                                hospitales_id                  
+require('Conexiones/BD.php');  
+
+$query="SELECT 
+               id, nombrehospital, 
+                    calle,
+                    numero, 
+                    colonia,
+                    codigopostal,
+                    delegacion,
+                    municipio,
+                    estado,
+                    telefono, 
+                    telefono2,
+                    nivel, 
+                    fax, 
+                    horariofax, 
+                     horariofaxf,
+                    radiotelefonico                  
                  
-          FROM ambulancias";
-    
-$resultado=$mysqli->query($query);
+          FROM hospitales";
+ $resultado=$mysqli->query($query); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,58 +81,65 @@ $resultado=$mysqli->query($query);
             <div class="container-fluid">
                 <div class="row">
 
-                   
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Ambulancias</h1>
+                        <h1 class="page-header">Consultar HOSPITALES</h1>
                     </div>
 
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Ambulancias Registradas
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="dataTable_wrapper">
-                                   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Hospitales Registrados
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Placas</th>
-                                            <th>marca</th>
-                                            <th>modelo</th>
-                                            <th>ano</th>
-                                            <th>numeconomico</th>
-                                            <th>tiposervicio</th>
-                                            <th>telefono</th>
-                                            <th>comentarios</th>
-                                            
+                                            <th>Hospital</th>
+                                            <th>Dirección</th>
+                                            <th>Municipio</th>
+                                            <th>Estado</th>
+                                            <th>Telefonos</th>
+                                            <th>Nivel</th>
+                                            <th>Fax</th>
+                                            <th>Horario</th>
+                                            <th>Radio</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="ModificarAmbulanciaGeneral.php?numplacas=<?php echo $row['numplacas'];?>"><?php echo $row['numplacas'];?></a></td>
-                                                <td><?php echo $row['marca'];?></td> 
-                                                <td><?php echo $row['modelo'];?></td> 
-                                                <td><?php echo $row['ano'];?></td>                                                 
-                                                <td><?php echo $row['numeconomico'];?></td>
-                                                <td><?php echo $row['tiposervicio'];?></td>   
-                                                <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>                          
-                                                <td><?php echo $row['comentarios'];?></td>
+                                            <td><a href="verHospital.php?id=<?php echo $row['id'];?>"><?php echo $row['nombrehospital'];?></a></td>
+                                                <td><?php echo $row['calle']." ".$row['numero']." ".$row['colonia']." ".$row['codigopostal'];?></td>                                     
+                                                <td><?php echo $row['municipio'];?></td> 
+                                                <td><?php echo $row['estado'];?></td>
+                                                <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>  
+                                                <td><?php echo $row['nivel'];?></td>
+                                                <td><?php echo $row['fax'];?></td>                                                
+                                                <td><?php echo $row['horariofax']." ".$row['horariofax'];?></td>
+                                                <td><?php echo $row['radiotelefonico'];?></td>
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
                                 </table>
-                                </div>
-                                <!-- /.table-responsive -->
+                            </div>                     
+               
+               
+                            <!-- /.table-responsive -->
                             
-                            </div>
-                        <!-- /.panel-body -->
                         </div>
-                    <!-- /.panel -->
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
+                </div>
+
+
+                    
+
+                    
                 </div>
                 <!-- /.row -->
             </div>
@@ -150,7 +164,7 @@ $resultado=$mysqli->query($query);
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

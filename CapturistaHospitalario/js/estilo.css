@@ -1,0 +1,16 @@
+
+#alert{
+width: 450px;
+padding: 5px;
+background-color: #000;
+color: red;
+display: none;
+}
+.alerta{
+width: 489px;
+padding: 5px;
+background-color: red;
+color: #fff;
+border-radius: 5px;
+display: none;
+}
