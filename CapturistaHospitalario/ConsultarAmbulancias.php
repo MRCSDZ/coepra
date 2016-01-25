@@ -92,21 +92,21 @@ $resultado=$mysqli->query($query);
                                     <thead>
                                         <tr>
                                             <th>Placas</th>
-                                            <th>marca</th>
-                                            <th>modelo</th>
-                                            <th>ano</th>
-                                            <th>numeconomico</th>
-                                            <th>tiposervicio</th>
-                                            <th>telefono</th>
-                                            <th>comentarios</th>
-                                            
+                                            <th>Marca</th>
+                                            <th>Modelo</th>
+                                            <th>Año</th>
+                                            <th>Numero Economico</th>
+                                            <th>Tipo De Servicio</th>
+                                            <th>Telefonos</th>
+                                            <th>Comentarios</th>
+                                            <th>Ver Ambulancia</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="verAmbulancia.php?numplacas=<?php echo $row['numplacas'];?>"><?php echo $row['numplacas'];?></a></td>
+                                                <td><?php echo $row['numplacas'];?></td> 
                                                 <td><?php echo $row['marca'];?></td> 
                                                 <td><?php echo $row['modelo'];?></td> 
                                                 <td><?php echo $row['ano'];?></td>                                                 
@@ -114,6 +114,7 @@ $resultado=$mysqli->query($query);
                                                 <td><?php echo $row['tiposervicio'];?></td>   
                                                 <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>                          
                                                 <td><?php echo $row['comentarios'];?></td>
+                                                <td><a href="verAmbulancia.php?numplacas=<?php echo $row['numplacas'];?>" class="btn btn-info">Ver Ambulancia</a></td>
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
@@ -154,9 +155,13 @@ $resultado=$mysqli->query($query);
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
+     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+                "scrollX": true,
+                "ordering": false,
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
+                
         });
     });
     </script>

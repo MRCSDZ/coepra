@@ -106,13 +106,14 @@ $query="SELECT
                                             <th>Fax</th>
                                             <th>Horario</th>
                                             <th>Radio</th>
+                                            <th>Ver Hospital</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
-                                        <tr>                 
-                                            <td><a href="verHospital.php?id=<?php echo $row['id'];?>"><?php echo $row['nombrehospital'];?></a></td>
+                                        <tr>       
+                                                <td><?php echo $row['nombrehospital'];?></td>
                                                 <td><?php echo $row['calle']." ".$row['numero']." ".$row['colonia']." ".$row['codigopostal'];?></td>                                     
                                                 <td><?php echo $row['municipio'];?></td> 
                                                 <td><?php echo $row['estado'];?></td>
@@ -121,6 +122,7 @@ $query="SELECT
                                                 <td><?php echo $row['fax'];?></td>                                                
                                                 <td><?php echo $row['horariofax']." ".$row['horariofax'];?></td>
                                                 <td><?php echo $row['radiotelefonico'];?></td>
+                                                <td><a href="verHospital.php?id=<?php echo $row['id'];?>" class="btn btn-info">Ver Hospital</a></td>
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
@@ -168,9 +170,13 @@ $query="SELECT
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
+     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+                "scrollX": true,
+                "ordering": false,
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
+                
         });
     });
     </script>

@@ -115,22 +115,22 @@ $resultado=$mysqli->query($query);
                                 <div class="dataTable_wrapper">
                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>                                         
-                                            <th>Folio</th>
+                                        <tr>              
                                             <th>Servicios Disponibles</th>
                                             <th>Numero</th>
                                             <th>Recursos Disponibles</th>
+                                            <th>Ver Servicio</th>
                                         </tr>
                                     </thead>
                                     <tbody>                                       
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>      
                                                         
-                                            <td><a href="verServicios.php?serviciodisponibleid=<?php echo $row['serviciodisponibleid'];?>"><?php echo $row['serviciodisponibleid'];?></a></td>
                                             <td><?php echo "<b>Unidad Trauma Musco Esqueletico </b>". $row['traumamuscoesqueletico']."<br>"."<b>Unidad de Quemados </b>". $row['quemados']."<br>"."<b>Unidad de Neuro Cirugia </b>". $row['neurocirugia']."<br>"."<b>Unidad de Cirugia Toracica </b>". $row['cirugiatoracica']."<br>"."<b>Unidad de Raquimedular </b>". $row['raquimedular']."<br>"."<b>Unidad de Cuidados Intensivos </b>". $row['unidadcuidadosintensivos']."<br>"."<b> Cuidados Coronario </b>". $row['cuidadoscoronario']."<br>"."<b>Unidad Cuidados Intensivos  </b>". $row['unidadcuidadosintensivos']."<br>"."<b>Unidad de Poli Traumatizado </b>". $row['politraumatizado']."<br>"."<b>Unidad de Quemado </b>". $row['quemado']."<br>"."<b>Unidad Sala Cirugia </b>". $row['salacirugi']."<br>"."<b>Unidad de Pos Quirurgica </b>". $row['posquirurgic']."<br>"."<b>Unidad de Inahaloterapia </b>". $row['inahaloterapia']."<br>"."<b>Unidad de Hemodialisis </b>". $row['hemodialisis']."<br>"."<b>Unidad de Laboratorio Clinico </b>". $row['laboratorioclinico']."<br>"."<b>Banco De Sangre </b>". $row['bancodesangre']."<br>"."<b>Unidad de Rayos X </b>".$row['rayos']."<br>"."<b>Unidad de Ultra Sonido </b>". $row['ultrasonid']."<br>"."<b>Unidad de Tomografia </b>". $row['tomografia']."<br>"."<b>Farmacia </b>". $row['farmacia'];?></td> 
                                             <td><?php echo $row['recursoid'];?></td>                                                  
                                             <td><?php echo "<b> Total de Camas disponibles </b>". $row['camas']."<br>"."<b>Total de Unidades de Adminsion Continuna </b>". $row['admisioncontinua']."<br>"."<b> Total de Unidades de Medicina Critica </b>". $row['medicinacritica']."<br>"."<b>Total de Unidades de Cuidados Coronarios </b>". $row['cuidadoscoronarios']."<br>"."<b>Total de Unidades de Cuidados Intensivos </b>". $row['cuidadosintensivos']."<br>"."<b>Unidades de Poli Traumatizados </b>". $row['politraumatizados']."<br>"."<b> Unidades de Quemados </b>". $row['quemados']."<br>"."<b>Salas de Cirugia </b>". $row['salacirugia']."<br>"."<b>Salas de  Pos Quirurgica </b>". $row['posquirurgica']."<br>"."<b>Salas de Rayos X </b>". $row['rayosx']."<br>"."<b>Salas de Ultra Sonido </b>". $row['ultrasonido'];?></td>
-                                                
+                                            <td><a href="verServicios.php?serviciodisponibleid=<?php echo $row['serviciodisponibleid'];?>" class="btn btn-info">Ver Servicio</a></td>
+    
                                         </tr>
                                     <?php } ?>               
                                    
@@ -173,9 +173,13 @@ $resultado=$mysqli->query($query);
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+                "scrollX": true,
+                "ordering": false,
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
+                
         });
     });
     </script>

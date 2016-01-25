@@ -91,8 +91,7 @@ $resultado=$mysqli->query($query);
                                 <div class="dataTable_wrapper">
                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>                                            
-                                            <th>Matricula</th>
+                                        <tr>                  
                                             <th>Nombre</th>
                                             <th>Cargo</th>
                                             <th>Servicio</th>
@@ -100,21 +99,21 @@ $resultado=$mysqli->query($query);
                                             <th>Ext.</th>
                                             <th>Turno</th>
                                             <th>Dias Laborales</th>
-                                            
-
+                                            <th>Ver Personal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="verPersonal.php?matricula=<?php echo $row['matricula'];?>"><?php echo $row['matricula'];?></a></td>
                                                 <td><?php echo $row['nombre']."<br>".$row['apaterno']."<br>".$row['amaterno'];?></td> 
                                                 <td><?php echo $row['cargo'];?></td> 
                                                 <td><?php echo $row['servicio'];?></td> 
                                                 <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>    
                                                 <td><?php echo $row['ext'];?></td> 
                                                 <td><?php echo $row['turno'];?>
-                                                <td><?php echo $row['dias'];?></td>   
+                                                <td><?php echo $row['dias'];?></td> 
+                                                <td><a href="verPersonal.php?matricula=<?php echo $row['matricula'];?>" class="btn btn-info">Ver Personal</a></td>
+
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
@@ -157,7 +156,11 @@ $resultado=$mysqli->query($query);
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true,
+                "scrollX": true,
+                "ordering": false,
+                "language": {"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"}
+                
         });
     });
     </script>
