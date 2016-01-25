@@ -151,7 +151,7 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                        
                     </div>
                     <div class="col-lg-12">
-                        <form action="EliminarPersonal.php" method="POST">
+                        <form action="EliminarServicios.php" method="POST">
                             <input type="hidden" value=" <?php echo $id; ?>" name="serviciodisponibleid" >
                             <input type="submit" class="form-control" value="Eliminar Personal" name="">
                             <br>
