@@ -6,10 +6,10 @@ require("../admin/instancia.txt");
 
  require('Conexiones/BD.php');
   
-  $id=$_GET['id'];
+  $matricula=$_GET['matricula'];
   
-  $query="SELECT * FROM hospitales
-                 WHERE id= '$id'";
+  $query="SELECT * FROM personales
+                 WHERE matricula= '$matricula'";
   
   $resultado=$mysqli->query($query);
   
@@ -67,32 +67,30 @@ require("../admin/instancia.txt");
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header"> <i class="fa fa-user-md" ></i> <?php echo $row["nombrehospital"]; ?></h1>
+                        <h1 class="page-header"> <i class="fa fa-user-md" ></i> <?php echo $row["matricula"]; ?></h1>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                Datos Generales del Hospital
+                                Datos Generales TAMP
                             </div>
                             <div class="panel-body">
-                                <b>Nombre Del Hospital: </b><?php echo $row["nombrehospital"];?> <br>
-                                <b>Calle: </b><?php echo $row["calle"];?> <br>
-                                <b>Número: </b><?php echo $row["numero"];?> <br>
-                                <b>Colonia: </b><?php echo $row["colonia"];?> <br>
-                                <b>Codigo Postal: </b><?php echo $row["codigopostal"];?> <br>
-                                <b>Delegación: </b><?php echo $row["delegacion"];?> <br>
-                                <b>Municipio: </b><?php echo $row["municipio"];?> <br>
-                                <b>Estado: </b><?php echo $row["estado"];?> <br>
+                                <b>Matricula: </b><?php echo $row["matricula"];?> <br>
+                                <b>Nombre: </b><?php echo $row["nombre"];?> <br>
+                                <b>Apellido Paterno: </b><?php echo $row["apaterno"];?> <br>
+                                <b>Apellido Materno: </b><?php echo $row["amaterno"];?> <br>
+                                <b>Cargo: </b><?php echo $row["cargo"];?> <br>
+                                <b>Servicio: </b><?php echo $row["servicio"];?> <br>
+                                <b>Piso: </b><?php echo $row["piso"];?> <br>
                                 <b>Telefono: </b><?php echo $row["telefono"];?> <br>
                                 <b>Telefono: </b><?php echo $row["telefono2"];?> <br>
-                                <b>Nivel: </b><?php echo $row["nivel"];?> <br>
-                                <b>Fax: </b><?php echo $row["fax"];?> <br>
-                                <b>Horario de Fax: </b><?php echo $row["horariofax"];?> <br>
-                                <b>Radio Telefonico: </b><?php echo $row["radiotelefonico"];?> <br>
+                                <b>Ext. Telefonica: </b><?php echo $row["ext"];?> <br>
+                                <b>Turno Laboral: </b><?php echo $row["turno"];?> <br>
+                                <b>Dias Laborales: </b><?php echo $row["dias"];?> <br>
                             </div>
                             <div class="panel-footer">
-                                <a href="ModificarHospitalGeneral.php?id=<?php echo $row['id'];?>">Modificar Datos Generales </a> 
+                                <a href="ModificarPersonalGeneral.php?matricula=<?php echo $row['matricula'];?>">Modificar Datos Generales </a> 
                             </div>
                         </div>
                     </div>
@@ -101,9 +99,9 @@ require("../admin/instancia.txt");
                        
                     </div>
                     <div class="col-lg-12">
-                        <form action="EliminarHospital.php" method="POST">
-                            <input type="hidden" value=" <?php echo $id; ?>" name="id" >
-                            <input type="submit" class="form-control" value="Eliminar Tamp" name="">
+                        <form action="EliminarPersonal.php" method="POST">
+                            <input type="hidden" value=" <?php echo $matricula; ?>" name="matricula" >
+                            <input type="submit" class="form-control" value="Eliminar Personal" name="">
                             <br>
                             <br>
                         </form>

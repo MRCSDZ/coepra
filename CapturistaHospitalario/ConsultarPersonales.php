@@ -15,9 +15,7 @@ $query="SELECT  matricula,
                                 telefono2,
                                 ext,
                                 turno,
-                                dias,
-                                hospitales_id                 
-                 
+                                dias   
           FROM personales";
     
 $resultado=$mysqli->query($query);
@@ -109,7 +107,7 @@ $resultado=$mysqli->query($query);
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="ModificarPersonalGeneral.php?matricula=<?php echo $row['matricula'];?>"><?php echo $row['matricula'];?></a></td>
+                                            <td><a href="verPersonal.php?matricula=<?php echo $row['matricula'];?>"><?php echo $row['matricula'];?></a></td>
                                                 <td><?php echo $row['nombre']."<br>".$row['apaterno']."<br>".$row['amaterno'];?></td> 
                                                 <td><?php echo $row['cargo'];?></td> 
                                                 <td><?php echo $row['servicio'];?></td> 

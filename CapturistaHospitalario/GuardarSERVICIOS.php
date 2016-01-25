@@ -6,8 +6,8 @@ require("../admin/instancia.txt");
 
 
 require('Conexiones/BD.php');
+//$serviciodisponibleid = mysql_insert_id()+1;  
 
-$serviciodisponibleid = $_GET["serviciodisponibleid"];
 $traumamuscoesqueletico = $_GET["traumamuscoesqueletico"];
 $quemados = $_GET["quemados"];
 $neurocirugia = $_GET["neurocirugia"];
@@ -24,7 +24,7 @@ $query="INSERT INTO serviciosdisponibles(serviciodisponibleid,
                                 raquimedular,
                                 unidadcuidadosintensivos,
                                 hospitales_id)
-                                   VALUES ('$serviciodisponibleid', 
+                                   VALUES (NULL,
                                     '$traumamuscoesqueletico', 
                                     '$quemados', 
                                     '$neurocirugia', 
@@ -138,9 +138,11 @@ $farmacia = $_GET["farmacia"];
                            
 
                             
+                        
 
 
-                            $id = $serviciodisponibleid;
+                            $id = mysqli_insert_id($mysqli);
+
 
 
 

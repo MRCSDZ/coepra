@@ -72,10 +72,7 @@ $query="SELECT * FROM hospitales";
                                }
                             ?>
                             </select>
-                            <br> 
-                            <b>Número de Registro</b>
-                            <input type="number" min="1" max="400" class="form-control" name="serviciodisponibleid" placeholder="Ej. 01" value="" required>
-                            <br> 
+                            <br>  
                             <b>Cuenta con Departamento de Trauma Musculoesquelético</b>
                             <select name="traumamuscoesqueletico" id="" class="form-control" value="" required>
                                 <option value="si">Si</option>

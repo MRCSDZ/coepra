@@ -4,20 +4,39 @@ session_start();
 require("../admin/instancia.txt");
 /******************  NO BORRAR  ******************/
 require('Conexiones/BD.php'); 
-$query="SELECT  numplacas,   
-                                marca,
-                                modelo, 
-                                ano, 
-                                numeconomico, 
-                                tiposervicio, 
-                                telefono,
-                                telefono2,
-                                comentarios,
-                                hospitales_id                  
+$query2="SELECT recursoid,	
+                                camas,
+                                admisioncontinua ,
+                                medicinacritica ,
+                                cuidadoscoronario ,
+                                cuidadoscoronarios ,
+                                unidadcuidadosintensivos ,
+                                cuidadosintensivos ,
+                                politraumatizado ,
+                                politraumatizados ,
+                                quemado ,
+                                quemados ,
+                                salacirugi ,
+                                salacirugia ,
+                                posquirurgic ,
+                                posquirurgica ,
+                                inahaloterapia ,
+                                hemodialisis ,
+                                laboratorioclinico ,
+                                bancodesangre ,
+                                rayos ,
+                                rayosx ,
+                                ultrasonid ,
+                                ultrasonido ,
+                                tomografia ,
+                                farmacia FROM recursos";             
                  
-          FROM ambulancias";
+
     
-$resultado=$mysqli->query($query);
+$resultado2=$mysqli->query($query2);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +96,7 @@ $resultado=$mysqli->query($query);
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Consultar Ambulancias</h1>
+                        <h1 class="page-header">Consultar Servicios Disponibles</h1>
                     </div>
 
                     <div class="col-lg-12">
@@ -90,15 +109,9 @@ $resultado=$mysqli->query($query);
                                 <div class="dataTable_wrapper">
                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
-                                            <th>Placas</th>
-                                            <th>marca</th>
-                                            <th>modelo</th>
-                                            <th>ano</th>
-                                            <th>numeconomico</th>
-                                            <th>tiposervicio</th>
-                                            <th>telefono</th>
-                                            <th>comentarios</th>
+                                        <tr>                                         
+                                            <th>Folio</th>
+                                            <th>Servicios Disponibles</th>
                                             
 
                                         </tr>
@@ -106,14 +119,8 @@ $resultado=$mysqli->query($query);
                                     <tbody>
                                     <?php while($row=$resultado->fetch_assoc()){ ?>
                                         <tr>                 
-                                            <td><a href="verAmbulancia.php?numplacas=<?php echo $row['numplacas'];?>"><?php echo $row['numplacas'];?></a></td>
-                                                <td><?php echo $row['marca'];?></td> 
-                                                <td><?php echo $row['modelo'];?></td> 
-                                                <td><?php echo $row['ano'];?></td>                                                 
-                                                <td><?php echo $row['numeconomico'];?></td>
-                                                <td><?php echo $row['tiposervicio'];?></td>   
-                                                <td><?php echo $row['telefono'].""."<br>"."".$row['telefono2'];?></td>                          
-                                                <td><?php echo $row['comentarios'];?></td>
+                                            <td><a href="ModificarServiciosGeneral.php?recursoid=<?php echo $row['recursoid'];?>"><?php echo $row['recursoid'];?></a></td>
+ <td><?php echo "<b> Total de Camas disponibles </b>". $row['camas']."<br>"."<b> Admision Continua </b>".$row['admisioncontinua']."<br>"."<b>Medicina Critica </b>".$row['medicinacritica']."<br>"."<b> Quidados Coronario </b>".$row['cuidadoscoronario']."<br>"."<b>Total de Unidades de Cuidados Coronarios </b>".$row['cuidadoscoronarios']."<br>"."<b> unidadcuidadosintensivos </b>".$row['unidadcuidadosintensivos'];?></td>                                                
                                         </tr>
                                     <?php } ?>                                           
                                     </tbody> 
@@ -138,6 +145,7 @@ $resultado=$mysqli->query($query);
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

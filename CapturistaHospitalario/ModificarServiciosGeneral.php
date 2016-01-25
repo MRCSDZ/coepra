@@ -87,7 +87,7 @@ $query2="SELECT * FROM hospitales";
                             </select>
                             <br> 
                             <b>Número de Registro</b>
-                            <input type="number" min="1" max="400" class="form-control" name="serviciodisponibleid" placeholder="Ej. 01" value="<?php echo $serviciodisponibleid; ?>" >
+                            <input type="hidden" min="1" max="400" class="form-control" name="serviciodisponibleid" placeholder="Ej. 01" value="<?php echo $serviciodisponibleid; ?>" >
                             <br> 
                             <b>Cuenta con Departamento de Trauma Musculoesquelético</b>
                             <select name="traumamuscoesqueletico" id="" class="form-control" value="<?php echo $row['traumamuscoesqueletico'];?>" >
