@@ -117,7 +117,7 @@ $query="SELECT * FROM hospitales";
                             <br>
                             
                             
-                            <b>Cuenta con Departamento de Cuidados Coronarios ------------</b>
+                            <b>Cuenta con Departamento de Cuidados Coronarios</b>
                             <select name="cuidadoscoronario" id="" class="form-control" value="" required>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -127,7 +127,7 @@ $query="SELECT * FROM hospitales";
                             <input type="number" min="1" max="100" class="form-control" name="cuidadoscoronarios">
                             <br> 
                             
-                            <b>Cuenta con Departamento de Cuidados Intensivos ----------Separar Para Arriba</b>
+                            <b>Cuenta con Departamento de Cuidados Intensivos</b>
                             <select name="unidadcuidadosintensivos" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -139,7 +139,7 @@ $query="SELECT * FROM hospitales";
                             
                             
                             
-                            <b>Cuenta con Departamento de UCI Politraumatizados-----------------</b>
+                            <b>Cuenta con Departamento de UCI Politraumatizados</b>
                             <select name="politraumatizado" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -150,7 +150,7 @@ $query="SELECT * FROM hospitales";
                             <br>
                             
                             
-                            <b>Cuenta con Departamento de UCI Quemados ---------------</b>
+                            <b>Cuenta con Departamento de UCI Quemados</b>
                             <select name="quemado" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -166,7 +166,7 @@ $query="SELECT * FROM hospitales";
                             
                             
                             
-                             <b>Cuenta con Salas de Cirugia Autorizados ---------------</b>
+                             <b>Cuenta con Salas de Cirugia Autorizados</b>
                             <select name="salacirugi" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -178,7 +178,7 @@ $query="SELECT * FROM hospitales";
                             
                             
                             
-                            <b>Camas de Recuperación Posquirurgica------------------</b>
+                            <b>Camas de Recuperación Posquirurgica</b>
                             <select name="posquirurgic" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -223,7 +223,7 @@ $query="SELECT * FROM hospitales";
                             
                             
                             
-                            <b>Salas de Rayos X -----------------</b>
+                            <b>Salas de Rayos X</b>
                             <select name="rayos" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -233,7 +233,7 @@ $query="SELECT * FROM hospitales";
                             <br>
                             
                             
-                            <b>Equipos de Ultrasonido para Diagnóstico --------------------</b>
+                            <b>Equipos de Ultrasonido para Diagnóstico</b>
                             <select name="ultrasonid" id="" class="form-control">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>

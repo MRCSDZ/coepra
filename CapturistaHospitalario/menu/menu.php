@@ -122,9 +122,6 @@
                                 <li>
                                     <a href="ConsultarServiciosDisponibles.php">Consultar Servicios</a>
                                 </li>
-                                <li>
-                                    <a href="ConsultarRecursosDisponibles.php">Consultar Recursos</a>
-                                </li>
                                 
                                 
                             </ul>

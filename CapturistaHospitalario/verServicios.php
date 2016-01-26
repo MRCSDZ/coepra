@@ -7,7 +7,11 @@ require("../admin/instancia.txt");
  require('Conexiones/BD.php');
   
   $id=$_GET['serviciodisponibleid'];
-  
+  $query="SELECT * FROM serviciosdisponibles
+             INNER JOIN recursos
+                    ON recursos.serviciosdisponibles_serviciodisponibleid = serviciosdisponibles.serviciodisponibleid
+                 WHERE serviciodisponibleid= '$id'";
+  /*
 $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                                 serviciosdisponibles.traumamuscoesqueletico,
                                 serviciosdisponibles.quemados,
@@ -42,7 +46,7 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                                 recursos.tomografia,
                                 recursos.farmacia
                                 FROM serviciosdisponibles
-                                INNER JOIN recursos WHERE serviciodisponibleid= '$id'";
+                                INNER JOIN recursos WHERE serviciodisponibleid= '$id'";*/
   
   $resultado=$mysqli->query($query);
   
@@ -106,7 +110,7 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                     <div class="col-lg-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                Datos Generales de los Servicios y Recursos del Hospital
+                                Datos Generales de los Servicios Disponibles
                             </div>
                             <div class="panel-body">
                                 <b>Unidad Trauma Musco Esqueletico </b><?php echo  $row['traumamuscoesqueletico'];?> <br>
@@ -115,8 +119,8 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                                 <b>Unidad de Cirugia Toracica </b><?php echo $row['cirugiatoracica'];?> <br>
                                 <b>Unidad de Raquimedular </b><?php echo $row['raquimedular'];?> <br>
                                 <b>Unidad de Cuidados Intensivos </b><?php echo $row['unidadcuidadosintensivos'];?> <br>
-                                <b> Cuidados Coronario </b><?php echo $row['cuidadoscoronario'];?> <br>
-                                <b>Unidad Cuidados Intensivos  </b><?php echo $row['unidadcuidadosintensivos'];?> <br>
+                                <b>Cuidados Coronario </b><?php echo $row['cuidadoscoronario'];?> <br>
+                                <b>Unidad Cuidados Intensivos  </b><?php echo $row['unidadcuidadosintensivos'];?> <br>                                
                                 <b>Unidad de Poli Traumatizado </b><?php echo $row['politraumatizado'];?> <br>
                                 <b>Unidad de Quemado </b><?php echo $row['quemado'];?> <br>
                                 <b>Unidad Sala Cirugia </b><?php echo $row['salacirugi'];?> <br>
@@ -128,8 +132,21 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                                 <b>Unidad de Rayos X </b><?php echo $row['rayos'];?> <br>
                                 <b>Unidad de Ultra Sonido </b><?php echo $row['ultrasonid'];?> <br>
                                 <b>Unidad de Tomografia </b><?php echo $row['tomografia'];?> <br>
-                                <b>Farmacia </b><?php echo $row['farmacia'];?> <br>
-                                <b> Total de Camas disponibles </b><?php echo $row['camas'];?> <br>
+                                <b>Farmacia </b><?php echo $row['farmacia'];?> <br>                                
+                            </div>
+                            <div class="panel-footer">
+                                <a href="ModificarServiciosGeneral.php?serviciodisponibleid=<?php echo $row['serviciodisponibleid'];?>">Modificar Datos Generales </a> 
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-lg-6">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                Recursos Disponibles
+                            </div>
+                            <div class="panel-body">
+                                <b>Total de Camas disponibles </b><?php echo $row['camas'];?> <br>
                                 <b>Total de Unidades de Adminsion Continuna </b><?php echo $row['admisioncontinua'];?> <br>
                                 <b> Total de Unidades de Medicina Critica </b><?php echo $row['medicinacritica'];?> <br>
                                 <b>Total de Unidades de Cuidados Coronarios </b><?php echo$row['cuidadoscoronarios'];?> <br>
@@ -139,17 +156,14 @@ $query=" SELECT serviciosdisponibles.serviciodisponibleid,
                                 <b>Salas de Cirugia </b><?php echo $row['salacirugia'];?> <br>
                                 <b>Salas de  Pos Quirurgica </b><?php echo $row['posquirurgica'];?> <br>
                                 <b>Salas de Rayos X </b><?php echo $row['rayosx'];?> <br>
-                                <b>Salas de Ultra Sonido </b><?php echo $row['ultrasonido'];?> <br>
+                                <b>Salas de Ultra Sonido </b><?php echo $row['ultrasonido'];?> <br>  
                             </div>
                             <div class="panel-footer">
-                                <a href="ModificarServiciosGeneral.php?serviciodisponibleid=<?php echo $row['serviciodisponibleid'];?>">Modificar Datos Generales </a> 
+                                 
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-6">
-                       
-                    </div>
+                    
                     <div class="col-lg-12">
                         <form action="EliminarServicios.php" method="POST">
                             <input type="hidden" value=" <?php echo $id; ?>" name="serviciodisponibleid" >
