@@ -6,10 +6,14 @@ require("../admin/instancia.txt");
 
  require('Conexiones/BD.php');
   
-  $id=$_GET['id'];
   
+  
+ $id=$_GET['id'];
+   
   $query="SELECT * FROM hospitales
-                 WHERE id= '$id'";
+             INNER JOIN tiposeguros
+                    ON tiposeguros.hospitales_id = hospitales.id WHERE hospitales.id= '$id='";
+  
   
   $resultado=$mysqli->query($query);
   
@@ -98,8 +102,23 @@ require("../admin/instancia.txt");
                     </div>
 
                     <div class="col-lg-6">
-                       
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                Tipo de Servicios/SSeguros Aceptados
+                            </div>
+                            <div class="panel-body">
+                                <b>ISSSTECALI </b><?php echo $row['issstecali'];?> <br>
+                                <b>ISSSTE </b><?php echo $row['issste'];?> <br>
+                                <b>Seguro Popular </b><?php echo $row['seguropopular'];?> <br>
+                                <b>IMSS </b><?php echo $row['imss'];?> <br>
+                            </div>
+                            <div class="panel-footer">
+                                 
+                            </div>
+                        </div>
                     </div>
+                    
+                    
                     <div class="col-lg-12">
                         <form action="EliminarHospital.php" method="POST">
                             <input type="hidden" value=" <?php echo $id; ?>" name="id" >
