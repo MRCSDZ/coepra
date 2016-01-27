@@ -104,7 +104,7 @@ require("../admin/instancia.txt");
                     <div class="col-lg-6">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                Tipo de Servicios/SSeguros Aceptados
+                                Tipo de Servicios/Seguros Aceptados
                             </div>
                             <div class="panel-body">
                                 <b>ISSSTECALI </b><?php echo $row['issstecali'];?> <br>

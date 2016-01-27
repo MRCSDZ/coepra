@@ -76,10 +76,9 @@ $query2="SELECT * FROM hospitales";
                     </div>
 
                     <div>
-                        <form action="GuardarAMBULANCIAS.php" method="GET">
+                        <form action="AlteraDatosGeneralesAmbulancia.php" method="GET">
                             
-                            <b>Número de placas del vehículo o ambulancia</b>
-                        <input type="text" class="form-control" name="numplacas" placeholder="Ej. 376" value="<?php echo $numplacas; ?>"  required>
+                        <input type="hidden" class="form-control" name="numplacas" placeholder="Ej. 376" value="<?php echo $numplacas; ?>"  required>
                         
                             <br> 
                             <b>Marca del vehículo o ambulancia</b>
@@ -119,19 +118,10 @@ $query2="SELECT * FROM hospitales";
                             <input id="comentarios" type="text" class="form-control" name="comentarios" value="<?php echo $row['comentarios'];?>" placeholder="Comentarios referentes al vehículo o ambulancia"required>
                      
                             <br> 
-                            <b>Institucion o Dependencia a la que Pertenece</b>
-                            <select  name="hospitales_id" id="hospitales_id" class="form-control" value="">
-                            <?php
                             
-                               while(  $row=$resultado2->fetch_assoc()){
-                                   echo "<option value='" . $row['id'] ."'>" . $row['nombrehospital'] . "</option>";
-                               }
-
-                            ?>
-                            </select>
                             <br> 
                             <center>
-                            <input class="btn-primary btn" type="submit" value="Registrar Ambulancia" class="form-control" >
+                            <input class="btn-primary btn" type="submit" value="Actualizar Ambulancia" class="form-control" >
                             </center>
                             <br>
                             <br>

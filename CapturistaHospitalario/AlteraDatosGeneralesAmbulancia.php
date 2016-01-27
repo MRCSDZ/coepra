@@ -4,61 +4,31 @@ session_start();
 require("../admin/instancia.txt");
 /******************  NO BORRAR  ******************/
 
-
 require('Conexiones/BD.php');
 
-$matricula = $_GET["matricula"];
-$nombre = $_GET["nombre"];
-$apaterno = $_GET["apaterno"];
-$amaterno = $_GET["amaterno"];
-$cargo = $_GET["cargo"];
-$servicio = $_GET["servicio"];
-$piso= $_GET["piso"];
+$numplacas = $_GET["numplacas"];
+$marca = $_GET["marca"];
+$modelo = $_GET["modelo"];
+$ano = $_GET["ano"];
+$numeconomico = $_GET["numeconomico"];
+$tiposervicio = $_GET["tiposervicio"];
 $telefono = $_GET["telefono"];
 $telefono2 = $_GET["telefono2"];
-$ext = $_GET["ext"];
-$turno = $_GET["turno"];
-$dias = $_GET["dias"];
-$hospitales_id = $_GET["hospitales_id"];
+$comentarios = $_GET["comentarios"];
 
-$query="INSERT INTO personales(matricula,
-                                nombre,
-                                apaterno,
-                                amaterno,
-                                cargo,
-                                servicio,
-                                piso,
-                                telefono,
-                                telefono2,
-                                ext,
-                                turno,
-                                dias,
-                                hospitales_id)
-                                   VALUES ('$matricula', 
-                                    '$nombre', 
-                                    '$apaterno', 
-                                    '$amaterno', 
-                                    '$cargo', 
-                                    '$servicio', 
-                                    '$piso',
-                                    '$telefono', 
-                                    '$telefono2', 
-                                    '$ext', 
-                                    '$turno', 
-                                    '$dias', 
-                                    '$hospitales_id')";
+        
+
+
+$query="UPDATE ambulancias SET marca='$marca',
+                                    modelo= '$modelo',
+                                    ano='$ano',
+                                    numeconomico='$numeconomico',
+                                    tiposervicio='$tiposervicio',
+                                    telefono='$telefono',
+                                    telefono2='$telefono2',
+                                    comentarios='$comentarios' WHERE numplacas = $numplacas";
     
 $resultado=$mysqli->query($query);
-
-
-
-//$idusuario;
-
-
-//$tamp_idtamp;
-$medicosatls= $_GET["medicosatls"];
-$cud = $_GET["cud"];
-
 
 
 
@@ -118,7 +88,7 @@ $cud = $_GET["cud"];
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Personal</h1>
+                        <h1 class="page-header">Ambulancias</h1>
                     </div>
 
                     <div class="col-lg-12">
@@ -130,39 +100,23 @@ $cud = $_GET["cud"];
                             
 
 
-                            $id = $matricula;
-
 
 
 
                         ?>
                         <center>    
                             <?php if($resultado>0){ ?>
-                                <h1>Registro de Personal guardado correctamente </h1>
-                                <a href="ConsultarPersonales.php"> Consultar Personales ya registrados</a>
+                                <h1>Modificación de Ambulancia Realizada con exito</h1>
+                                <a href="ConsultarAmbulancias.php"> Consultar Ambulancias ya registrados</a>
                                 <?php                            
                             }else{ ?>
-                                    <h1>Error al Registrar Personal</h1>   
+                                    <h1>Error al Actualizar Ambulancia</h1>   
                                     </br>
-                                    <a href="ConsultarPersonales.php">Regresar</a>     
+                                    <a href="ConsultarAmbulancias.php">Regresar</a>     
                                 <?php   } ?>        
                         </center>
-
                         <?php 
-
-                                    $query2="INSERT INTO serviciosdepersonales(serviciodepersonalid, 
-                                                            medicosatls, 
-                                                            cud, 
-                                                            personales_matricula) 
-                                                    VALUES (NULL, 
-                                                            '$medicosatls', 
-                                                            '$cud',
-                                                             '$id')";
                                     
-
-                                    $resultado2=$mysqli->query($query2);
-                         
-                                   mysqli_close($mysqli);
                         
                         
                         

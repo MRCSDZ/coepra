@@ -11,10 +11,11 @@ $query2="SELECT * FROM hospitales";
   $resultado2=$mysqli->query($query2);
 
  $serviciodisponibleid = $_GET["serviciodisponibleid"];
-  
-  $query="SELECT * FROM serviciosdisponibles
-      
-                 WHERE serviciodisponibleid= 'serviciodisponibleid'";
+ 
+ $query="SELECT * FROM serviciosdisponibles
+             INNER JOIN recursos
+                    ON recursos.serviciosdisponibles_serviciodisponibleid = serviciosdisponibles.serviciodisponibleid
+                 WHERE serviciodisponibleid= '$serviciodisponibleid'";
   
   $resultado=$mysqli->query($query);
   
@@ -72,21 +73,11 @@ $query2="SELECT * FROM hospitales";
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Registro de Personal</h1>
+                        <h1 class="page-header">Registro de Servicio</h1>
                     </div>
 
                     <div>
-                       <form action="GuardarSERVICIOS.php" method="GET" >
-                            <b>Institucion o Dependencia a la que Pertenece</b>                            
-                            <select  name="hospitales_id" id="" class="form-control"  >
-                            <?php
-                               while(  $row=$resultado2->fetch_assoc()){
-                                   echo "<option value='" . $row['id'] ."'>" . $row['nombrehospital'] . "</option>";
-                               }
-                            ?>
-                            </select>
-                            <br> 
-                            <b>Número de Registro</b>
+                       <form action="AlteraDatosGeneralesServicio.php" method="GET" >                            
                             <input type="hidden" min="1" max="400" class="form-control" name="serviciodisponibleid" placeholder="Ej. 01" value="<?php echo $serviciodisponibleid; ?>" >
                             <br> 
                             <b>Cuenta con Departamento de Trauma Musculoesquelético</b>
@@ -123,24 +114,24 @@ $query2="SELECT * FROM hospitales";
                             <h2>Recursos Disponibles dentro del Hospital</h2>   
                             
                             <b>Total de Camas con las que Cuenta el Hospital </b>
-                            <input type="number" min="1" max="100" class="form-control" name="camas" value="" >
+                            <input type="number" min="1" max="100" class="form-control" name="camas" value="<?php echo $row['camas'];?>" >
                             <br>
                             <b>Unidades de Servicio de Urgencias</b>
-                            <input type="number" min="1" max="100"  class="form-control" name="admisioncontinua" value="" >
+                            <input type="number" min="1" max="100"  class="form-control" name="admisioncontinua" value="<?php echo $row['admisioncontinua'];?>" >
                             <br>
                             <b>Medicina Critica Total</b>
-                            <input type="number" min="1" max="100" class="form-control" name="medicinacritica">
+                            <input type="number" min="1" max="100" class="form-control" name="medicinacritica" value="<?php echo $row['medicinacritica'];?>">
                             <br>
                             
                             
                             <b>Cuenta con Departamento de Cuidados Coronarios</b>
-                            <select name="cuidadoscoronario" id="" class="form-control" value="" >
+                            <select name="cuidadoscoronario" id="" class="form-control" value="<?php echo $row['cuidadoscoronario'];?>" >
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <br> 
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="cuidadoscoronarios">
+                            <input type="number" min="1" max="100" class="form-control" name="cuidadoscoronarios" value="<?php echo $row['cuidadoscoronarios'];?>">
                             <br> 
                             
                             <b>Cuenta con Departamento de Cuidados Intensivos</b>
@@ -150,30 +141,30 @@ $query2="SELECT * FROM hospitales";
                             </select>
                             <br>      
                             <b>Unidades de Cuidados Intensivos</b>
-                            <input type="number" min="1" max="100" class="form-control" name="cuidadosintensivos">
+                            <input type="number" min="1" max="100" class="form-control" name="cuidadosintensivos" value="<?php echo $row['cuidadosintensivos'];?>">
                             <br>
                             
                             
                             
                             <b>Cuenta con Departamento de UCI Politraumatizados</b>
-                            <select name="politraumatizado" id="" class="form-control">
+                            <select name="politraumatizado" id="" class="form-control" value="<?php echo $row['politraumatizado'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <br> 
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="politraumatizados">
+                            <input type="number" min="1" max="100" class="form-control" name="politraumatizados" value="<?php echo $row['politraumatizados'];?>">
                             <br>
                             
                             
                             <b>Cuenta con Departamento de UCI Quemados</b>
-                            <select name="quemado" id="" class="form-control">
+                            <select name="quemado" id="" class="form-control" value="<?php echo $row['quemado'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <br> 
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="quemados">
+                            <input type="number" min="1" max="100" class="form-control" name="quemados" value="<?php echo $row['quemados'];?>">
                             <br>
                             
                             
@@ -183,30 +174,30 @@ $query2="SELECT * FROM hospitales";
                             
                             
                              <b>Cuenta con Salas de Cirugia Autorizados </b>
-                            <select name="salacirugi" id="" class="form-control">
+                            <select name="salacirugi" id="" class="form-control" value="<?php echo $row['salacirugi'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="salacirugia">
+                            <input type="number" min="1" max="100" class="form-control" name="salacirugia" value="<?php echo $row['salacirugia'];?>">
                             <br> 
                             
                             
                             
                             
                             <b>Camas de Recuperación Posquirurgica</b>
-                            <select name="posquirurgic" id="" class="form-control">
+                            <select name="posquirurgic" id="" class="form-control" value="<?php echo $row['posquirurgic'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <b>Cantidad de Camas</b>
-                            <input type="number" min="1" max="100" class="form-control" name="posquirurgica">
+                            <input type="number" min="1" max="100" class="form-control" name="posquirurgica" value="<?php echo $row['posquirurgica'];?>">
                             <br>
                             
                             
                             
                             <b>Servicio de Inahaloterapia</b>
-                            <select name="inahaloterapia" id="" class="form-control">
+                            <select name="inahaloterapia" id="" class="form-control" value="<?php echo $row['inahaloterapia'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
@@ -214,7 +205,7 @@ $query2="SELECT * FROM hospitales";
                             
                             
                             <b>Equipos y Personal de Hemodialisis</b>
-                            <select name="hemodialisis" id="" class="form-control">
+                            <select name="hemodialisis" id="" class="form-control" value="<?php echo $row['hemodialisis'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
@@ -223,7 +214,7 @@ $query2="SELECT * FROM hospitales";
                             
                             
                             <b>Laboratorios de Análisis Clínico</b>
-                            <select name="laboratorioclinico" id="" class="form-control">
+                            <select name="laboratorioclinico" id="" class="form-control" value="<?php echo $row['laboratorioclinico'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
@@ -231,7 +222,7 @@ $query2="SELECT * FROM hospitales";
                             
                             
                             <b>Bancos de Sangre y de Transfusiones</b>
-                            <select name="bancodesangre" id="" class="form-control">
+                            <select name="bancodesangre" id="" class="form-control" value="<?php echo $row['bancodesangre'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
@@ -240,28 +231,28 @@ $query2="SELECT * FROM hospitales";
                             
                             
                             <b>Salas de Rayos X </b>
-                            <select name="rayos" id="" class="form-control">
+                            <select name="rayos" id="" class="form-control" value="<?php echo $row['rayos'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="rayosx">
+                            <input type="number" min="1" max="100" class="form-control" name="rayosx" value="<?php echo $row['rayosx'];?>">
                             <br>
                             
                             
                             <b>Equipos de Ultrasonido para Diagnóstico </b>
-                            <select name="ultrasonid" id="" class="form-control">
+                            <select name="ultrasonid" id="" class="form-control" value="<?php echo $row['ultrasonid'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <b>Número o Cantidad</b>
-                            <input type="number" min="1" max="100" class="form-control" name="ultrasonido">
+                            <input type="number" min="1" max="100" class="form-control" name="ultrasonido" value="<?php echo $row['ultrasonido'];?>">
                             <br>
                             
                             
                             
                             <b>Salas de Tomografía Axial Computarizada</b>
-                            <select name="tomografia" id="" class="form-control">
+                            <select name="tomografia" id="" class="form-control" value="<?php echo $row['tomografia'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
@@ -270,12 +261,12 @@ $query2="SELECT * FROM hospitales";
                             
                             
                             <b>Farmacias</b>
-                            <select name="farmacia" id="" class="form-control">
+                            <select name="farmacia" id="" class="form-control" value="<?php echo $row['farmacia'];?>">
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                             <br>                
-                            <input type="submit" value="Registrar" class="form-control">
+                            <input type="submit" value="Actualizar Servicio" class="form-control">
                             <br>
                             <br>
                         </form>

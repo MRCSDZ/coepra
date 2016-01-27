@@ -12,6 +12,7 @@ $query2="SELECT * FROM hospitales";
 
  $matricula = $_GET["matricula"];
   
+ 
   $query="SELECT * FROM personales 
       
                  WHERE matricula= '$matricula'";
@@ -76,9 +77,8 @@ $query2="SELECT * FROM hospitales";
                     </div>
 
                     <div>
-                        <form action="GuardarPERSONALES.php" method="GET">
-                            <b>Número de Control</b>
-                            <input  type="text" class="form-control" name="matricula" placeholder="Ej. 01219" value="<?php echo $matricula; ?>" required>
+                        <form action="AlteraDatosGeneralesPersonal.php" method="GET">
+                            <input  type="hidden" class="form-control" name="matricula" placeholder="Ej. 01219" value="<?php echo $matricula; ?>" required>
                         
                             <br> 
                             <b>Nombre</b>
@@ -154,18 +154,9 @@ $query2="SELECT * FROM hospitales";
                                 <option value="no">No</option>
                             </select>
                             <br>  
-                            <b>Institucion o Dependencia a la que Pertenece</b>
-                            <select  name="hospitales_id" id="" class="form-control" <?php echo $row['hospitales_id'];?>>
-                            <?php
-
-                               while(  $row=$resultado2->fetch_assoc()){
-                                   echo "<option value='" . $row['id'] ."'>" . $row['nombrehospital'] . "</option>";
-                               }
-
-                            ?>
-                            </select>
+                            
                             <br>                                                                        
-                            <input type="submit" value="Registrar" class="form-control">
+                            <input type="submit" value="Actualizar Personal" class="form-control">
                             <br>
                             <br>
                         </form>

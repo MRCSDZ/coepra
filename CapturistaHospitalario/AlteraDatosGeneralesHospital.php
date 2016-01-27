@@ -4,49 +4,45 @@ session_start();
 require("../admin/instancia.txt");
 /******************  NO BORRAR  ******************/
 
-
 require('Conexiones/BD.php');
 
-$matricula = $_GET["matricula"];
-$nombre = $_GET["nombre"];
-$apaterno = $_GET["apaterno"];
-$amaterno = $_GET["amaterno"];
-$cargo = $_GET["cargo"];
-$servicio = $_GET["servicio"];
-$piso= $_GET["piso"];
+$id = $_GET["id"];
+$nombre = $_GET["nombrehospital"];
+$calle = $_GET["calle"];
+$numero = $_GET["numero"];
+$colonia = $_GET["colonia"];
+$codigopostal = $_GET["codigopostal"];
+
+$delegacion = $_GET["delegacion"];
+$municipio = $_GET["municipio"];
+$estado = $_GET["estado"];
 $telefono = $_GET["telefono"];
 $telefono2 = $_GET["telefono2"];
-$ext = $_GET["ext"];
-$turno = $_GET["turno"];
-$dias = $_GET["dias"];
-$hospitales_id = $_GET["hospitales_id"];
+$nivel = $_GET["nivel"];
+$fax = $_GET["fax"];
+$horariofax = $_GET["horariofax"];
+$horariofaxf = $_GET["horariofaxf"];
+$radiotelefonico = $_GET["radiotelefonico"];
 
-$query="INSERT INTO personales(matricula,
-                                nombre,
-                                apaterno,
-                                amaterno,
-                                cargo,
-                                servicio,
-                                piso,
-                                telefono,
-                                telefono2,
-                                ext,
-                                turno,
-                                dias,
-                                hospitales_id)
-                                   VALUES ('$matricula', 
-                                    '$nombre', 
-                                    '$apaterno', 
-                                    '$amaterno', 
-                                    '$cargo', 
-                                    '$servicio', 
-                                    '$piso',
-                                    '$telefono', 
-                                    '$telefono2', 
-                                    '$ext', 
-                                    '$turno', 
-                                    '$dias', 
-                                    '$hospitales_id')";
+
+        
+
+
+$query="UPDATE hospitales SET nombrehospital='$nombre',
+                                    calle= '$calle',
+                                    numero='$numero',
+                                    colonia='$colonia',
+                                    codigopostal='$codigopostal',
+                                    delegacion='$delegacion',
+                                    municipio='$municipio',
+                                    estado='$estado',
+                                    telefono='$telefono',
+                                    telefono2='$telefono2',
+                                    nivel='$nivel',
+                                    fax='$fax',
+                                    horariofax='$horariofax',
+                                    horariofaxf='$horariofaxf',
+                                    radiotelefonico='$radiotelefonico' WHERE id = $id";
     
 $resultado=$mysqli->query($query);
 
@@ -54,11 +50,11 @@ $resultado=$mysqli->query($query);
 
 //$idusuario;
 
-
-//$tamp_idtamp;
-$medicosatls= $_GET["medicosatls"];
-$cud = $_GET["cud"];
-
+$idseguro = $_GET["id"];
+$issstecali= $_GET["issstecali"];
+$issste = $_GET["issste"];
+$seguropopular = $_GET["seguropopular"];
+$imss = $_GET["imss"];
 
 
 
@@ -118,7 +114,7 @@ $cud = $_GET["cud"];
                    
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Personal</h1>
+                        <h1 class="page-header">Hospitales</h1>
                     </div>
 
                     <div class="col-lg-12">
@@ -130,7 +126,7 @@ $cud = $_GET["cud"];
                             
 
 
-                            $id = $matricula;
+                            $id = mysqli_insert_id($mysqli);
 
 
 
@@ -138,27 +134,20 @@ $cud = $_GET["cud"];
                         ?>
                         <center>    
                             <?php if($resultado>0){ ?>
-                                <h1>Registro de Personal guardado correctamente </h1>
-                                <a href="ConsultarPersonales.php"> Consultar Personales ya registrados</a>
+                                <h1>Modificación de Hospital Realizada con exito</h1>
+                                <a href="ConsultarHospitales.php"> Consultar Hospitales ya registrados</a>
                                 <?php                            
                             }else{ ?>
-                                    <h1>Error al Registrar Personal</h1>   
+                                    <h1>Error al Actualizar Hospital</h1>   
                                     </br>
-                                    <a href="ConsultarPersonales.php">Regresar</a>     
+                                    <a href="ConsultarHospitales.php">Regresar</a>     
                                 <?php   } ?>        
                         </center>
-
                         <?php 
-
-                                    $query2="INSERT INTO serviciosdepersonales(serviciodepersonalid, 
-                                                            medicosatls, 
-                                                            cud, 
-                                                            personales_matricula) 
-                                                    VALUES (NULL, 
-                                                            '$medicosatls', 
-                                                            '$cud',
-                                                             '$id')";
-                                    
+                                    $query2= "UPDATE tiposeguros SET issstecali='$issstecali',
+                                    issste= '$issste',
+                                    seguropopular='$seguropopular',
+                                    imss='$imss' WHERE 	id = $idseguro";         
 
                                     $resultado2=$mysqli->query($query2);
                          

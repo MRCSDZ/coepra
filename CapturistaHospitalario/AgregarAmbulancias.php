@@ -102,11 +102,11 @@ require('Conexiones/BD.php');
                             </select>                          
                             <br>
                             <b>Telefono</b>
-                            <input id="telefono" type="tel" name="telefono" placeholder="Ej. (664) 681-7559 "class="form-control" value="" required>
+                            <input id="telefono" type="tel" name="telefono" placeholder="Ej. (664) 6817559 "class="form-control" value="" required>
                         <div id="telefonos" class="alerta">Hola</div>
                             <br>                            
                             <b>Telefono</b>
-                            <input id="telefono2" type="tel" name="telefono2" placeholder="Ej. (664) 681-7559 "class="form-control" value="" >
+                            <input id="telefono2" type="tel" name="telefono2" placeholder="Ej. (664) 6817559 "class="form-control" value="" >
                         <div id="telefonos2" class="alerta">Hola</div>
                             <br>
                              <b>Comentarios</b>
