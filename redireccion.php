@@ -4,7 +4,7 @@
  session_start();
 
 $matricula = $_POST["mat"];
-$pwd = $_POST["pwd"]; 
+$pwd = md5($_POST["pwd"]); 
 
 $q = "SELECT * FROM usuario
 	  WHERE matricula = '$matricula' 
